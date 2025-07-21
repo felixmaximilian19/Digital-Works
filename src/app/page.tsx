@@ -170,6 +170,118 @@ export default function Home() {
     },
   ];
 
+  // AI Stack Features
+  const aiStackFeatures = [
+    {
+      icon: "🧠",
+      title: "Intelligent Modelle",
+      description:
+        "Unsere KI-Modelle sind in der Lage, komplexe Aufgaben zu lösen und neue Erkenntnisse zu generieren.",
+    },
+    {
+      icon: "🔗",
+      title: "Modell Integration",
+      description:
+        "Einfache Integration unserer KI-Modelle in Ihre bestehenden Systeme.",
+    },
+    {
+      icon: "🚀",
+      title: "Schnelle Lieferung",
+      description:
+        "Unsere Modelle sind schnell und zuverlässig, um Ihre Anforderungen zu erfüllen.",
+    },
+    {
+      icon: "🛡️",
+      title: "Sicherheit & Vertrauen",
+      description:
+        "Wir legen großen Wert auf die Sicherheit und Vertraulichkeit Ihrer Daten.",
+    },
+  ];
+
+  // Testimonials
+  const testimonials = [
+    {
+      name: "Sophie L.",
+      quote:
+        "AI Stack hat unser Team produktiver gemacht – die KI-Modelle liefern endlich wirklich relevante Ergebnisse!",
+      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+      role: "Data Scientist, Startup"
+    },
+    {
+      name: "Max R.",
+      quote:
+        "Die Integration von AI Stack in unsere Workflows war super einfach. Die Live-Prompts sparen uns täglich Zeit!",
+      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      role: "Product Owner, SaaS"
+    },
+    {
+      name: "Lea S.",
+      quote:
+        "Die KI-Tools von AI Stack sind intuitiv, leistungsstark und machen richtig Spaß im Alltag!",
+      avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+      role: "Freelancerin, KI-Consultant"
+    }
+  ];
+
+  // Pricing Plans
+  const pricingPlans = [
+    {
+      name: "Free",
+      price: "0€",
+      features: [
+        "Alle Basisfunktionen",
+        "Sichere Verwaltung",
+        "Community Support",
+      ],
+      highlight: false,
+    },
+    {
+      name: "Pro",
+      price: "12€",
+      features: [
+        "Alle Free-Features",
+        "Erweiterte KI-Analysen",
+        "Priorisierter Support",
+      ],
+      highlight: true,
+    },
+    {
+      name: "Enterprise",
+      price: "Kontakt",
+      features: [
+        "Individuelle Lösungen",
+        "Onboarding & Training",
+        "Premium Support",
+      ],
+      highlight: false,
+    },
+  ];
+
+  // Blog Posts
+  const blogPosts = [
+    {
+      title: "KI-Trends 2025",
+      excerpt:
+        "Was erwartet uns im nächsten Jahr? Die wichtigsten Entwicklungen im Überblick.",
+      link: "/news",
+      image: "/globe.svg",
+    },
+    {
+      title: "Best Practices für KI-Teams",
+      excerpt:
+        "So gelingt die Einführung von KI in Unternehmen – Tipps aus der Praxis.",
+      link: "/best-practices",
+      image: "/file.svg",
+    },
+    {
+      title: "Prompt Engineering",
+      excerpt:
+        "Wie man mit den richtigen Prompts das Maximum aus KI-Modellen herausholt.",
+      link: "/prompts",
+      image: "/window.svg",
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section (Finvolv Style) */}
@@ -214,7 +326,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section (Finvolv Style) */}
+      {/* Features Section (AI Stack Style) */}
       <section
         ref={featuresRef}
         id="features"
@@ -227,10 +339,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-bold text-center mb-14"
           >
-            Why Choose Finvolv
+            Warum AI Stack?
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {finvolvFeatures.map((feature, idx) => (
+            {aiStackFeatures.map((feature, idx) => (
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -242,7 +354,9 @@ export default function Home() {
                 <h3 className="text-xl font-bold mb-2 text-white">
                   {feature.title}
                 </h3>
-                <p className="text-gray-300 text-base">{feature.description}</p>
+                <p className="text-gray-300 text-base">
+                  {feature.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -275,7 +389,9 @@ export default function Home() {
                     className={`card p-6 text-center ${action.gradient} hover-lift`}
                   >
                     <div className="text-3xl mb-3">{action.icon}</div>
-                    <h3 className="text-white font-semibold">{action.name}</h3>
+                    <h3 className="text-white font-semibold">
+                      {action.name}
+                    </h3>
                   </div>
                 </Link>
               </motion.div>
@@ -311,9 +427,15 @@ export default function Home() {
                     {trend.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2">{trend.title}</h3>
-                    <p className="text-gray-300 mb-3">{trend.description}</p>
-                    <p className="text-sm text-gray-400">{trend.details}</p>
+                    <h3 className="text-xl font-bold mb-2">
+                      {trend.title}
+                    </h3>
+                    <p className="text-gray-300 mb-3">
+                      {trend.description}
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      {trend.details}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -349,8 +471,12 @@ export default function Home() {
                     {model.icon}
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold">{model.name}</h3>
-                    <p className="text-sm text-gray-400">{model.provider}</p>
+                    <h3 className="text-lg font-bold">
+                      {model.name}
+                    </h3>
+                    <p className="text-sm text-gray-400">
+                      {model.provider}
+                    </p>
                   </div>
                 </div>
                 <p className="text-gray-300 text-sm mb-3">
@@ -448,14 +574,16 @@ export default function Home() {
                 <h3 className="text-xl font-bold mb-2 text-white">
                   {step.title}
                 </h3>
-                <p className="text-gray-300 text-base">{step.description}</p>
+                <p className="text-gray-300 text-base">
+                  {step.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section (AI Stack) */}
       <section
         ref={useScrollReveal("fade-in")}
         className="py-20 px-6 bg-transparent"
@@ -470,29 +598,7 @@ export default function Home() {
             Was unsere Nutzer sagen
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Anna M.",
-                quote:
-                  "Die Plattform hat meine Finanzplanung komplett verändert. Die KI-Insights sind Gold wert!",
-                avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-                role: "Startup-Gründerin",
-              },
-              {
-                name: "Jonas K.",
-                quote:
-                  "Schnell, sicher und super intuitiv. Die beste All-in-One-Lösung für moderne Finanzen.",
-                avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-                role: "Product Manager",
-              },
-              {
-                name: "Lea S.",
-                quote:
-                  "Die Automatisierung spart mir jeden Monat Stunden. Absolute Empfehlung!",
-                avatar: "https://randomuser.me/api/portraits/women/65.jpg",
-                role: "Freelancerin",
-              },
-            ].map((testimonial, idx) => (
+            {testimonials.map((testimonial, idx) => (
               <motion.div
                 key={testimonial.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -510,15 +616,19 @@ export default function Home() {
                 <p className="text-gray-200 italic mb-4">
                   “{testimonial.quote}”
                 </p>
-                <div className="font-bold text-white">{testimonial.name}</div>
-                <div className="text-sm text-gray-400">{testimonial.role}</div>
+                <div className="font-bold text-white">
+                  {testimonial.name}
+                </div>
+                <div className="text-sm text-gray-400">
+                  {testimonial.role}
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Pricing Section (AI Stack) */}
       <section
         ref={useScrollReveal("slide-up")}
         className="py-20 px-6 bg-transparent"
@@ -533,44 +643,13 @@ export default function Home() {
             Preise
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Free",
-                price: "0€",
-                features: [
-                  "Alle Basisfunktionen",
-                  "Sichere Verwaltung",
-                  "Community Support",
-                ],
-                highlight: false,
-              },
-              {
-                name: "Pro",
-                price: "12€",
-                features: [
-                  "Alle Free-Features",
-                  "Erweiterte KI-Analysen",
-                  "Priorisierter Support",
-                ],
-                highlight: true,
-              },
-              {
-                name: "Enterprise",
-                price: "Kontakt",
-                features: [
-                  "Individuelle Lösungen",
-                  "Onboarding & Training",
-                  "Premium Support",
-                ],
-                highlight: false,
-              },
-            ].map((plan, idx) => (
+            {pricingPlans.map((plan, idx) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className={`card p-8 text-center hover-lift ${plan.highlight ? "ring-2 ring-blue-500/30" : ""}`}
+                className={`card p-8 text-center hover-lift ${plan.highlight ? 'ring-2 ring-blue-500/30' : ''}`}
               >
                 <h3 className="text-xl font-bold mb-2 text-white">
                   {plan.name}
@@ -579,16 +658,14 @@ export default function Home() {
                   {plan.price}
                 </div>
                 <ul className="mb-6 space-y-2">
-                  {plan.features.map((f) => (
+                  {plan.features.map(f => (
                     <li key={f} className="text-gray-300">
                       {f}
                     </li>
                   ))}
                 </ul>
                 <button className="px-6 py-2 rounded-lg gradient-blue text-white font-semibold hover-glow shadow-lg text-base">
-                  {plan.name === "Enterprise"
-                    ? "Kontakt aufnehmen"
-                    : "Jetzt starten"}
+                  {plan.name === 'Enterprise' ? 'Kontakt aufnehmen' : 'Jetzt starten'}
                 </button>
               </motion.div>
             ))}
@@ -596,7 +673,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog Preview Section */}
+      {/* Blog Preview Section (AI Stack) */}
       <section
         ref={useScrollReveal("fade-in")}
         className="py-20 px-6 bg-transparent"
@@ -611,29 +688,7 @@ export default function Home() {
             Aus dem Blog
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "KI-Trends 2025",
-                excerpt:
-                  "Was erwartet uns im nächsten Jahr? Die wichtigsten Entwicklungen im Überblick.",
-                link: "/news",
-                image: "/globe.svg",
-              },
-              {
-                title: "Best Practices für KI-Teams",
-                excerpt:
-                  "So gelingt die Einführung von KI in Unternehmen – Tipps aus der Praxis.",
-                link: "/best-practices",
-                image: "/file.svg",
-              },
-              {
-                title: "Prompt Engineering",
-                excerpt:
-                  "Wie man mit den richtigen Prompts das Maximum aus KI-Modellen herausholt.",
-                link: "/prompts",
-                image: "/window.svg",
-              },
-            ].map((post, idx) => (
+            {blogPosts.map((post, idx) => (
               <motion.div
                 key={post.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -642,7 +697,7 @@ export default function Home() {
                 className="card p-6 hover-lift flex flex-col"
               >
                 <Image
-                  src={post.image.replace('/public', '/')}
+                  src={post.image}
                   alt={post.title}
                   width={400}
                   height={128}

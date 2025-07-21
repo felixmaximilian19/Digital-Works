@@ -225,7 +225,7 @@ export default function NewsPage() {
 
         {/* Apple-Style Filter-Tabs für News-Kategorien */}
         <div className="flex flex-wrap gap-3 justify-center mb-8">
-          {['Alle', 'Forschung', 'Neue Tools', 'Business-Trends', 'Modell-Updates', 'Marktanalyse'].map(cat => (
+          {['Alle', 'Marktanalyse', 'Modell-Updates', 'Forschung', 'Governance', 'Business-Trends'].map(cat => (
             <button
               key={cat}
               className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedCategory === cat ? 'bg-white/10 text-blue-400 ring-2 ring-blue-400/30 scale-105' : 'text-gray-200'}`}
@@ -333,48 +333,29 @@ export default function NewsPage() {
           transition={{ duration: 0.6, delay: 0.8 }}
           ref={newsCardsRef}
         >
-          <h2 className="text-2xl font-bold mb-6 text-center">Alle News</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-2xl font-bold mb-6 text-center text-white">Aktuelle KI-News</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             <AnimatePresence>
               {filteredNews.map((news, index) => (
                 <motion.div
                   key={news.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="card p-6 hover-lift"
+                  initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.7, delay: index * 0.08, type: 'spring', bounce: 0.18 }}
+                  className="relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10"
+                  whileHover={{ scale: 1.025 }}
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-semibold text-blue-400 bg-blue-500/20 px-2 py-1 rounded-full">
-                      {news.category}
-                    </span>
-                    <span className="text-xs text-gray-400">{news.readTime}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2 line-clamp-2">{news.title}</h3>
-                  <p className="text-gray-300 text-sm mb-4 line-clamp-3">{news.summary}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-400">{news.date}</span>
-                    <div className="flex space-x-2">
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => handleCopy(news.title, news.id)}
-                        className="text-blue-400 hover:text-blue-300 text-xs"
-                      >
-                        {copiedId === news.id ? '✓' : '📋'}
-                      </motion.button>
-                      <Link href={`/news/${news.id}`}>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="text-blue-400 hover:text-blue-300 text-xs"
-                        >
-                          📖
-                        </motion.button>
-                      </Link>
+                  <div className="p-7 flex flex-col gap-3">
+                    <h3 className="text-xl font-bold text-white mb-1 leading-tight font-sans">{news.title}</h3>
+                    <p className="text-gray-200 mb-2 font-sans">{news.summary}</p>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-semibold bg-white/20 text-white px-3 py-1 rounded-full">{news.category}</span>
+                      <span className="text-sm text-white/80">{news.readTime}</span>
                     </div>
+                    <span className="text-xs text-gray-400">{news.date}</span>
                   </div>
+                  <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{boxShadow:'0 0 60px 0 #fff, 0 0 120px 0 #f5f5f5'}} />
                 </motion.div>
               ))}
             </AnimatePresence>

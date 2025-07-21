@@ -757,41 +757,17 @@ export default function ToolsPage() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mb-8"
         >
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <motion.button
-                  key={category}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full font-medium transition-all duration-200 ${
-                    selectedCategory === category
-                      ? 'gradient-orange text-white'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-                  }`}
-                >
-                  {category}
-                </motion.button>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {subcategories.map((subcategory) => (
-                <motion.button
-                  key={subcategory}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedSubcategory(subcategory)}
-                  className={`px-4 py-2 rounded-full font-medium transition-all duration-200 ${
-                    selectedSubcategory === subcategory
-                      ? 'gradient-pink text-white'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-                  }`}
-                >
-                  {subcategory}
-                </motion.button>
-              ))}
-            </div>
+          {/* Filter-Tabs konsistent Apple-Style */}
+          <div className="flex flex-wrap gap-3 justify-center mb-8">
+            {['Alle', 'Text', 'Bild', 'Video', 'Audio', 'Code', 'Sonstiges'].map(cat => (
+              <button
+                key={cat}
+                className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedCategory === cat ? 'bg-white/10 text-blue-400 ring-2 ring-blue-400/30 scale-105' : 'text-gray-200'}`}
+                onClick={() => setSelectedCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
           <div className="mt-4 flex justify-center">
             <input

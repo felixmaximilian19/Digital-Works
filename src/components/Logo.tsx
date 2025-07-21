@@ -15,10 +15,10 @@ export default function Logo({ className = '', style = {}, showText = true, ...p
       {showText && (
         <div className="flex flex-col">
           <span className="text-xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-            Digital
+            AI Stack
           </span>
           <span className="text-sm font-medium text-gray-300 -mt-1">
-            Works
+            KI Platform
           </span>
         </div>
       )}

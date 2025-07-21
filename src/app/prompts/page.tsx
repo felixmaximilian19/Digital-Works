@@ -705,7 +705,7 @@ export default function PromptsPage() {
 
         {/* Apple-Style Filter-Tabs für Kategorien */}
         <div className="flex flex-wrap gap-3 justify-center mb-8">
-          {['Alle', 'Content', 'Marketing', 'Programmierung', 'Design', 'Finance'].map(cat => (
+          {['Alle', 'Content', 'Marketing', 'Programmierung', 'Design', 'KI-Strategie'].map(cat => (
             <button
               key={cat}
               className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedCategory === cat ? 'bg-white/10 text-blue-400 ring-2 ring-blue-400/30 scale-105' : 'text-gray-200'}`}

@@ -94,19 +94,37 @@ export default function ModelsPage() {
           <p className="text-gray-200 text-lg mb-2">{executiveSummary}</p>
         </section>
         {/* Modelle Übersicht */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 text-white">Führende KI-Modelle & Preise</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {modelDetails.map((model, idx) => (
-              <div key={idx} className="bg-white/5 rounded-xl p-6 border border-white/10 shadow">
-                <h3 className="text-xl font-semibold text-white mb-1">{model.name}</h3>
-                <p className="text-gray-200 mb-2">{model.description}</p>
-                <div className="text-sm text-gray-400 mb-1"><b>Preise:</b> {model.prices}</div>
-                <div className="text-sm text-gray-400"><b>Highlights:</b> {model.highlights}</div>
-              </div>
-            ))}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
+          <h2 className="text-2xl font-bold mb-4 text-white text-center">Führende KI-Modelle & Preise</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <AnimatePresence>
+              {modelDetails.map((model, idx) => (
+                <motion.div
+                  key={model.name}
+                  initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.7, delay: idx * 0.08, type: 'spring', bounce: 0.18 }}
+                  className="relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10"
+                  whileHover={{ scale: 1.025 }}
+                >
+                  <div className="p-7 flex flex-col gap-3">
+                    <h3 className="text-xl font-bold text-white mb-1 leading-tight font-sans">{model.name}</h3>
+                    <p className="text-gray-200 mb-2 font-sans">{model.description}</p>
+                    <div className="text-sm text-gray-400 mb-1"><b>Preise:</b> {model.prices}</div>
+                    <div className="text-sm text-gray-400"><b>Highlights:</b> {model.highlights}</div>
+                  </div>
+                  <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{boxShadow:'0 0 60px 0 #fff, 0 0 120px 0 #f5f5f5'}} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
-        </section>
+        </motion.section>
 
         {/* Filters */}
         <motion.div
@@ -115,41 +133,27 @@ export default function ModelsPage() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-8"
         >
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <motion.button
-                  key={category}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full font-medium transition-all duration-200 ${
-                    selectedCategory === category
-                      ? 'gradient-purple text-white'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-                  }`}
-                >
-                  {category}
-                </motion.button>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {providers.map((provider) => (
-                <motion.button
-                  key={provider}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedProvider(provider)}
-                  className={`px-4 py-2 rounded-full font-medium transition-all duration-200 ${
-                    selectedProvider === provider
-                      ? 'gradient-orange text-white'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-                  }`}
-                >
-                  {provider}
-                </motion.button>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-3 justify-center mb-4">
+            {categories.map((category) => (
+              <button
+                key={category}
+                className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedCategory === category ? 'bg-white/10 text-blue-400 ring-2 ring-blue-400/30 scale-105' : 'text-gray-200'}`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3 justify-center">
+            {providers.map((provider) => (
+              <button
+                key={provider}
+                className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedProvider === provider ? 'bg-white/10 text-pink-400 ring-2 ring-pink-400/30 scale-105' : 'text-gray-200'}`}
+                onClick={() => setSelectedProvider(provider)}
+              >
+                {provider}
+              </button>
+            ))}
           </div>
           <div className="mt-4 flex justify-center">
             <input
