@@ -25,6 +25,12 @@ function useScrollReveal(className = 'fade-in', threshold = 0.15) {
 }
 
 // Best Practices Data
+type Practice = {
+  title: string;
+  description: string;
+  tips?: string[];
+};
+
 const bestPracticesData = [
   {
     id: 1,
@@ -321,7 +327,7 @@ export default function BestPracticesPage() {
                 </div>
                 
                 <div className="space-y-4">
-                  {practice.practices.map((item, itemIndex) => (
+                  {practice.practices.map((item: Practice, itemIndex) => (
                     <motion.div
                       key={itemIndex}
                       initial={{ opacity: 0, x: -20 }}
