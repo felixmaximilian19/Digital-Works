@@ -353,7 +353,7 @@ export default function BestPracticesPage() {
                           >
                             <h5 className="text-white font-medium mb-2">Praktische Tipps:</h5>
                             <ul className="space-y-1">
-                              {item.tips.map((tip, tipIndex) => (
+                              {item.tips && item.tips.map((tip: string, tipIndex: number) => (
                                 <li key={tipIndex} className="text-white/80 text-sm flex items-start">
                                   <span className="text-white/60 mr-2">•</span>
                                   {tip}

@@ -28,7 +28,7 @@ export default function PromptDetailPage() {
   const params = useParams();
   const router = useRouter();
   const promptId = parseInt(params.id as string);
-  const promptsData: Prompt[] = Array.isArray(promptsDataRaw) ? promptsDataRaw : (promptsDataRaw?.promptsData || []);
+  const promptsData: Prompt[] = Array.isArray(promptsDataRaw) ? promptsDataRaw : [];
   // Fallback: Suche nach Prompt in promptsData
   const prompt: Prompt | null = promptsData.find((p: Prompt) => p.id === promptId) || null;
   const [copied, setCopied] = useState(false);

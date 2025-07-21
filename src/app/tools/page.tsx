@@ -665,7 +665,6 @@ export default function ToolsPage() {
 
   const headerRef = useScrollReveal('fade-in');
   const spotlightRef = useScrollReveal('slide-up');
-  const cardsRef = useScrollReveal('slide-up');
 
   return (
     <div className="min-h-screen py-8 px-6 bg-black">
