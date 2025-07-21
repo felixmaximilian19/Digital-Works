@@ -1,0 +1,42 @@
+<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="32" height="32" rx="4" fill="#000000"/>
+  
+  <!-- C-Shape Background -->
+  <rect x="4" y="4" width="24" height="24" rx="2" fill="#ffffff" opacity="0.1"/>
+  
+  <!-- C-Shape -->
+  <path 
+    d="M6 6C6 5.44772 6.44772 5 7 5H25C25.5523 5 26 5.44772 26 6V26C26 26.5523 25.5523 27 25 27H7C6.44772 27 6 26.5523 6 26V6Z" 
+    fill="#ffffff"
+  />
+  
+  <!-- Inner C-Shape Cutout -->
+  <path 
+    d="M8 8C8 7.44772 8.44772 7 9 7H23C23.5523 7 24 7.44772 24 8V24C24 24.5523 23.5523 25 23 25H9C8.44772 25 8 24.5523 8 24V8Z" 
+    fill="#000000"
+  />
+  
+  <!-- Diagonal Lines -->
+  <path 
+    d="M12 10L16 14L20 10" 
+    stroke="#ffffff" 
+    strokeWidth="1.5" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  />
+  <path 
+    d="M12 14L16 18L20 14" 
+    stroke="#ffffff" 
+    strokeWidth="1.5" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  />
+  <path 
+    d="M12 18L16 22L20 18" 
+    stroke="#ffffff" 
+    strokeWidth="1.5" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  />
+</svg> 

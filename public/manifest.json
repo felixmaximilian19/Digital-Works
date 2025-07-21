@@ -1,0 +1,22 @@
+{
+  "name": "DigitalWorks - KI-Landscape 2024-2025",
+  "short_name": "DigitalWorks",
+  "description": "Umfassende Übersicht der KI-Landschaft 2024-2025",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+} 
