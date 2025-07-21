@@ -816,11 +816,11 @@ export default function ToolsPage() {
               {filteredTools.map((tool, index) => (
                 <motion.div
                   key={tool.id}
-                  initial={{ opacity: 0, y: 32, scale: 0.96 }}
+                  initial={{ opacity: 0, y: 24, scale: 0.96 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.3, delay: index * 0.02, type: 'spring', bounce: 0.18 }}
-                  className={`relative group bg-gradient-to-br from-black via-zinc-900 to-zinc-800 rounded-2xl shadow-2xl overflow-hidden cursor-pointer border border-white/15 hover:border-orange-400/40 hover:shadow-orange-500/20 transition-all duration-300 ${tool.featured ? 'ring-2 ring-orange-500/30' : ''}`}
+                  transition={{ duration: 0.15, delay: index * 0.01, type: 'spring', bounce: 0.18 }}
+                  className={`relative group bg-[#18181b] rounded-2xl shadow-lg overflow-hidden cursor-pointer border border-white/10 hover:border-orange-400/40 hover:shadow-orange-500/20 transition-all duration-200 ${tool.featured ? 'ring-2 ring-orange-500/30' : ''}`}
                   onClick={() => window.open(tool.link, '_blank')}
                   whileHover={{ scale: 1.06 }}
                 >
@@ -854,8 +854,6 @@ export default function ToolsPage() {
                       <span className="text-gray-200 text-sm ml-2">{tool.useCases && tool.useCases.join(', ')}</span>
                     </div>
                   </div>
-                  {/* Glow Effekt */}
-                  <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{boxShadow:'0 0 80px 0 #ff8800, 0 0 120px 0 #fff2'}} />
                 </motion.div>
               ))}
             </AnimatePresence>
