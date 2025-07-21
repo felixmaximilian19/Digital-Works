@@ -6,7 +6,7 @@ import { Copy, Check, ArrowLeft } from 'lucide-react';
 import promptsDataRaw from '../page';
 import Image from 'next/image';
 import { useState } from 'react';
-import './liquid-glass.css';
+import '../../models/liquid-glass.css';
 
 export default function PromptDetailPage() {
   const params = useParams();
