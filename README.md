@@ -1,4 +1,4 @@
-# DigitalWorks - KI-Landscape 2024-2025
+# AI Stack - KI-Landscape 2024-2025
 
 ## 🌟 **Moderne KI-Plattform für alle Geräte**
 
@@ -293,7 +293,7 @@ MIT License - siehe [LICENSE](LICENSE) Datei für Details.
 
 ## 🎉 **Fazit**
 
-**DigitalWorks** ist eine moderne, vollständig responsive KI-Plattform, die auf allen Geräten und Browsern perfekt funktioniert. Mit Apple-inspiriertem Design, umfassenden Features und optimaler Performance bietet sie die beste Erfahrung für alle Nutzer.
+**AI Stack** ist eine moderne, vollständig responsive KI-Plattform, die auf allen Geräten und Browsern perfekt funktioniert. Mit Apple-inspiriertem Design, umfassenden Features und optimaler Performance bietet sie die beste Erfahrung für alle Nutzer.
 
 **Die App ist bereit für den produktiven Einsatz! 🚀**
 

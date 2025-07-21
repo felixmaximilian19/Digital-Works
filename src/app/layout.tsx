@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DigitalWorks - KI-Landscape 2024-2025",
+  title: "AI Stack - KI-Landscape 2024-2025",
   description: "Umfassende Übersicht der KI-Landschaft 2024-2025 mit Executive Summary, aktuellen Trends, KI-Modellen, Tools und Best Practices.",
   icons: {
     icon: '/favicon.svg',
@@ -45,7 +45,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="DigitalWorks" />
+        <meta name="apple-mobile-web-app-title" content="AI Stack" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
