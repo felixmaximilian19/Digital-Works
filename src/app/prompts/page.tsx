@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Copy, Check, Star, Zap, BookOpen, Target, TrendingUp } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import '../../models/liquid-glass.css';
+import '../models/liquid-glass.css';
 
 // Erweiterte KI-Prompts Data mit aktuellen Best Practices
 const promptsData = [
