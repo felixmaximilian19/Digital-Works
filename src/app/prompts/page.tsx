@@ -2,8 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import { Copy, Check, Star, Zap, BookOpen, Target, TrendingUp } from 'lucide-react';
-import Image from 'next/image';
+import { Copy, Check, Star, BookOpen, Target, TrendingUp } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import '../models/liquid-glass.css';
 
@@ -595,7 +594,6 @@ export default function PromptsPage() {
 
   const headerRef = useScrollReveal('fade-in');
   const featuredRef = useScrollReveal('slide-up');
-  const cardsRef = useScrollReveal('slide-up');
 
   return (
     <div className="min-h-screen py-8 px-6 bg-black">
@@ -748,7 +746,7 @@ export default function PromptsPage() {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <h2 className="text-2xl font-bold mb-6 text-center text-white">Alle KI-Prompts</h2>
-          <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             <AnimatePresence>
               {filteredPrompts.map((prompt, index) => (
                 <motion.div

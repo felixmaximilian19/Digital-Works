@@ -4,17 +4,33 @@ import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Copy, Check, ArrowLeft } from 'lucide-react';
 import promptsDataRaw from '../page';
-import Image from 'next/image';
 import { useState } from 'react';
 import '../../models/liquid-glass.css';
+
+// Definiere einen Typ für Prompt
+interface Prompt {
+  id: number;
+  title: string;
+  category: string;
+  subcategory: string;
+  description: string;
+  prompt: string;
+  icon: string;
+  gradient: string;
+  featured?: boolean;
+  difficulty: string;
+  tags: string[];
+  usage: string;
+  examples?: string[];
+}
 
 export default function PromptDetailPage() {
   const params = useParams();
   const router = useRouter();
   const promptId = parseInt(params.id as string);
-  const promptsData: any[] = Array.isArray(promptsDataRaw) ? promptsDataRaw : (promptsDataRaw?.promptsData || []);
+  const promptsData: Prompt[] = Array.isArray(promptsDataRaw) ? promptsDataRaw : (promptsDataRaw?.promptsData || []);
   // Fallback: Suche nach Prompt in promptsData
-  const prompt = promptsData.find((p: any) => p.id === promptId) || null;
+  const prompt: Prompt | null = promptsData.find((p: Prompt) => p.id === promptId) || null;
   const [copied, setCopied] = useState(false);
 
   if (!prompt) {
@@ -64,7 +80,7 @@ export default function PromptDetailPage() {
             </div>
             <p className="text-gray-200 text-lg mb-2">{prompt.description}</p>
             <div className="flex flex-wrap gap-2 mb-2">
-              {prompt.tags && prompt.tags.map((tag: any, i: any) => (
+              {prompt.tags && prompt.tags.map((tag: string, i: number) => (
                 <span key={i} className="text-xs bg-orange-500/10 text-orange-300 px-2 py-1 rounded-full">{tag}</span>
               ))}
             </div>

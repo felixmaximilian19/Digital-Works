@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import './tools-glass.css';
 
 // KI-Tools Data aus dem Executive Summary
