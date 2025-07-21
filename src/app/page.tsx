@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Logo from "../components/Logo";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 function useScrollReveal(className = "fade-in", threshold = 0.15) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -124,6 +125,17 @@ const quickActions = [
     gradient: "gradient-cyan",
   },
 ];
+
+// Apple Loader Komponente
+function AppleLoader() {
+  return <div className="loader-apple" aria-label="Lädt..." />;
+}
+// Skeleton Loader Komponente
+function CardSkeleton() {
+  return (
+    <div className="card skeleton h-48 w-full mb-6" />
+  );
+}
 
 export default function Home() {
   // Scroll Reveal Refs
@@ -488,9 +500,11 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="card p-8 text-center hover-lift"
               >
-                <img
+                <Image
                   src={testimonial.avatar}
                   alt={testimonial.name}
+                  width={64}
+                  height={64}
                   className="w-16 h-16 rounded-full mx-auto mb-4 border-2 border-white/20"
                 />
                 <p className="text-gray-200 italic mb-4">
@@ -603,21 +617,21 @@ export default function Home() {
                 excerpt:
                   "Was erwartet uns im nächsten Jahr? Die wichtigsten Entwicklungen im Überblick.",
                 link: "/news",
-                image: "/public/globe.svg",
+                image: "/globe.svg",
               },
               {
                 title: "Best Practices für KI-Teams",
                 excerpt:
                   "So gelingt die Einführung von KI in Unternehmen – Tipps aus der Praxis.",
                 link: "/best-practices",
-                image: "/public/file.svg",
+                image: "/file.svg",
               },
               {
                 title: "Prompt Engineering",
                 excerpt:
                   "Wie man mit den richtigen Prompts das Maximum aus KI-Modellen herausholt.",
                 link: "/prompts",
-                image: "/public/window.svg",
+                image: "/window.svg",
               },
             ].map((post, idx) => (
               <motion.div
@@ -627,9 +641,11 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="card p-6 hover-lift flex flex-col"
               >
-                <img
-                  src={post.image}
+                <Image
+                  src={post.image.replace('/public', '/')}
                   alt={post.title}
+                  width={400}
+                  height={128}
                   className="w-full h-32 object-contain mb-4"
                 />
                 <h3 className="text-lg font-bold mb-2 text-white">

@@ -50,6 +50,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="mash-radiance-bg">
+          <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 30% 40%, #5856D6 0%, #000 80%)', width: '600px', height: '600px', top: '10%', left: '5%', animationDelay: '0s'}} />
+          <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 70% 60%, #FF2D55 0%, #000 80%)', width: '500px', height: '500px', top: '40%', left: '60%', animationDelay: '10s'}} />
+          <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 50% 80%, #34C759 0%, #000 80%)', width: '400px', height: '400px', top: '70%', left: '30%', animationDelay: '20s'}} />
+        </div>
         <Navigation />
         <main className="pt-20">
           {children}

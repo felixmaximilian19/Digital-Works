@@ -223,29 +223,18 @@ export default function NewsPage() {
           </motion.button>
         </motion.div>
 
-        {/* Categories Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
-        >
-          {categories.map((category) => (
-            <motion.button
-              key={category}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full font-medium transition-all duration-200 ${
-                selectedCategory === category
-                  ? 'gradient-blue text-white'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-              }`}
+        {/* Apple-Style Filter-Tabs für News-Kategorien */}
+        <div className="flex flex-wrap gap-3 justify-center mb-8">
+          {['Alle', 'Forschung', 'Neue Tools', 'Business-Trends', 'Modell-Updates', 'Marktanalyse'].map(cat => (
+            <button
+              key={cat}
+              className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedCategory === cat ? 'bg-white/10 text-blue-400 ring-2 ring-blue-400/30 scale-105' : 'text-gray-200'}`}
+              onClick={() => setSelectedCategory(cat)}
             >
-              {category}
-            </motion.button>
+              {cat}
+            </button>
           ))}
-        </motion.div>
+        </div>
 
         {/* Live News Section */}
         <motion.section
@@ -266,15 +255,14 @@ export default function NewsPage() {
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: index * 0.08, type: 'spring', bounce: 0.18 }}
-                className="relative group bg-white/5 rounded-3xl shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10"
+                className="relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10"
                 whileHover={{ scale: 1.025 }}
               >
                 <div className="p-7 flex flex-col gap-3">
-                  <h3 className="text-xl font-bold text-white mb-1 leading-tight">{news.title}</h3>
-                  <p className="text-gray-200 text-base mb-2 min-h-[48px]">{news.summary}</p>
+                  <h3 className="text-xl font-bold text-white mb-1 leading-tight font-sans">{news.title}</h3>
+                  <p className="text-gray-200 text-base mb-2 min-h-[48px] font-sans">{news.summary}</p>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-gray-400">{news.date}</span>
-                    <span className="text-xs text-gray-500">{news.source}</span>
+                    <span className="text-sm text-white/70">{news.date}</span>
                   </div>
                 </div>
                 {/* Apple-Style Glow Effekt */}

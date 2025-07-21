@@ -178,20 +178,19 @@ export default function ModelsPage() {
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.7, delay: index * 0.08, type: 'spring', bounce: 0.18 }}
-                  className={`relative group bg-white/5 rounded-3xl shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10 ${model.name.includes("Gemini") ? 'ring-2 ring-blue-500/30' : model.name.includes("Claude") ? 'ring-2 ring-purple-500/30' : ''}`}
-                  onClick={() => model.name.includes("Gemini") ? window.open("https://ai.google.com/models/gemini", '_blank') : router.push(`/models/${modelDetails.findIndex(m => m.name === model.name) + 1}`)}
+                  className={`relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10 ${model.name.includes('Gemini') ? 'ring-2 ring-blue-500/30' : model.name.includes('Claude') ? 'ring-2 ring-purple-500/30' : ''}`}
+                  onClick={() => model.name.includes('Gemini') ? window.open('https://ai.google.com/models/gemini', '_blank') : router.push(`/models/${modelDetails.findIndex(m => m.name === model.name) + 1}`)}
                   whileHover={{ scale: 1.025 }}
                 >
-                  {/* Parallax Bild oben */}
                   <div className="p-7 flex flex-col gap-3">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className={`w-10 h-10 rounded-xl flex items-center justify-center text-2xl ${model.name.includes("Gemini") ? 'gradient-cyan' : model.name.includes("Claude") ? 'gradient-purple' : 'gradient-blue'}`} aria-label="Icon" role="img">{model.name.includes("Gemini") ? "🔮" : model.name.includes("Claude") ? "🦉" : "🤖"}</span>
+                      <span className={`w-10 h-10 rounded-xl flex items-center justify-center text-2xl ${model.name.includes('Gemini') ? 'gradient-cyan' : model.name.includes('Claude') ? 'gradient-purple' : 'gradient-blue'}`} aria-label="Icon" role="img">{model.name.includes('Gemini') ? '🔮' : model.name.includes('Claude') ? '🦉' : '🤖'}</span>
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-1 leading-tight">{model.name}</h3>
-                        <p className="text-xs text-gray-400">{model.name.includes("Gemini") ? "Google DeepMind" : model.name.includes("Claude") ? "Anthropic" : "OpenAI"}</p>
+                        <h3 className="text-xl font-bold text-white mb-1 leading-tight font-sans">{model.name}</h3>
+                        <p className="text-xs text-gray-400">{model.name.includes('Gemini') ? 'Google DeepMind' : model.name.includes('Claude') ? 'Anthropic' : 'OpenAI'}</p>
                       </div>
                     </div>
-                    <p className="text-gray-200 text-base mb-2 min-h-[48px]">{model.description}</p>
+                    <p className="text-gray-200 text-base mb-2 min-h-[48px] font-sans">{model.description}</p>
                     <div className="flex flex-wrap gap-2 mb-2">
                       {model.highlights.split(',').map((highlight, i) => (
                         <span key={i} className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded-full">{highlight.trim()}</span>
@@ -199,7 +198,7 @@ export default function ModelsPage() {
                     </div>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm text-gray-400">Preise: {model.prices}</span>
-                      <span className="text-xs text-gray-500">Kategorie: {model.description.includes("Reasoning-First") ? "Text" : model.description.includes("Large Action Model") ? "Multimodal" : "Text"}</span>
+                      <span className="text-xs text-gray-500">Kategorie: {model.description.includes('Reasoning-First') ? 'Text' : model.description.includes('Large Action Model') ? 'Multimodal' : 'Text'}</span>
                     </div>
                     <div className="mb-2">
                       <span className="text-gray-400 text-xs">Besonderheiten:</span>

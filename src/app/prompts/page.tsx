@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import { Copy, Check, Star, BookOpen, Target, TrendingUp } from 'lucide-react';
+import { Copy, Check, Star, BookOpen, Target, TrendingUp, Heart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import '../models/liquid-glass.css';
 
@@ -573,6 +573,10 @@ export default function PromptsPage() {
   const [selectedDifficulty, setSelectedDifficulty] = useState("Alle");
   const [searchTerm, setSearchTerm] = useState("");
   const [copiedId, setCopiedId] = useState<number | null>(null);
+  const [pulseId, setPulseId] = useState<number | null>(null);
+  const [favorites, setFavorites] = useState<number[]>([]);
+  const [favBounceId, setFavBounceId] = useState<number | null>(null);
+  const [favParticles, setFavParticles] = useState<{id:number;left:number;}[]>([]);
   const router = useRouter();
 
   const filteredPrompts = promptsData.filter(prompt => {
@@ -589,7 +593,17 @@ export default function PromptsPage() {
   const handleCopy = (text: string, id: number) => {
     navigator.clipboard.writeText(text);
     setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+    setPulseId(id);
+    setTimeout(() => setCopiedId(null), 1500);
+    setTimeout(() => setPulseId(null), 400);
+  };
+
+  const handleFavorite = (id: number) => {
+    setFavorites(favs => favs.includes(id) ? favs.filter(f => f !== id) : [...favs, id]);
+    setFavBounceId(id);
+    // Partikel erzeugen
+    setFavParticles(ps => [...ps, ...Array.from({length: 6}, (_,i) => ({id: Date.now()+i, left: Math.random()*80+10}))]);
+    setTimeout(() => setFavBounceId(null), 500);
   };
 
   const headerRef = useScrollReveal('fade-in');
@@ -599,11 +613,15 @@ export default function PromptsPage() {
     <div className="min-h-screen py-8 px-6 bg-black">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div ref={headerRef}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          ref={headerRef}
           className="text-center mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient-orange">KI-Prompts</span>
+            <span className="text-gradient-cyan">Prompts</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Professionelle Prompts für alle Bereiche - von Content Creation bis Code Review
@@ -685,49 +703,30 @@ export default function PromptsPage() {
           </motion.section>
         )}
 
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-8"
-        >
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-center mb-4">
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <motion.button
-                  key={category}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full font-medium transition-all duration-200 ${
-                    selectedCategory === category
-                      ? 'gradient-orange text-white'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-                  }`}
-                >
-                  {category}
-                </motion.button>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {difficulties.map((difficulty) => (
-                <motion.button
-                  key={difficulty}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedDifficulty(difficulty)}
-                  className={`px-4 py-2 rounded-full font-medium transition-all duration-200 ${
-                    selectedDifficulty === difficulty
-                      ? 'gradient-pink text-white'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-                  }`}
-                >
-                  {difficulty}
-                </motion.button>
-              ))}
-            </div>
-          </div>
+        {/* Apple-Style Filter-Tabs für Kategorien */}
+        <div className="flex flex-wrap gap-3 justify-center mb-8">
+          {['Alle', 'Content', 'Marketing', 'Programmierung', 'Design', 'Finance'].map(cat => (
+            <button
+              key={cat}
+              className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedCategory === cat ? 'bg-white/10 text-blue-400 ring-2 ring-blue-400/30 scale-105' : 'text-gray-200'}`}
+              onClick={e => { e.stopPropagation(); setSelectedCategory(cat); }}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        {/* Apple-Style Filter-Tabs für Schwierigkeitsgrade */}
+        <div className="flex flex-wrap gap-3 justify-center mb-8">
+          {['Alle', 'Anfänger', 'Mittel', 'Fortgeschritten'].map(diff => (
+            <button
+              key={diff}
+              className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedDifficulty === diff ? 'bg-white/10 text-pink-400 ring-2 ring-pink-400/30 scale-105' : 'text-gray-200'}`}
+              onClick={e => { e.stopPropagation(); setSelectedDifficulty(diff); }}
+            >
+              {diff}
+            </button>
+          ))}
+        </div>
           <div className="flex justify-center">
             <input
               type="text"
@@ -790,24 +789,41 @@ export default function PromptsPage() {
                       <span className="text-gray-400 text-xs">Prompt:</span>
                       <span className="text-gray-200 text-sm ml-2 break-words">{prompt.prompt.slice(0, 120)}{prompt.prompt.length > 120 ? '...' : ''}</span>
                     </div>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={e => { e.stopPropagation(); handleCopy(prompt.prompt, prompt.id); }}
-                      className="w-full bg-white/10 text-orange-400 py-2 rounded-lg font-semibold hover:bg-white/20 transition-colors flex items-center justify-center mt-2"
-                    >
-                      {copiedId === prompt.id ? (
-                        <>
-                          <Check className="w-4 h-4 mr-2" />
-                          Kopiert!
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-4 h-4 mr-2" />
-                          Prompt kopieren
-                        </>
-                      )}
-                    </motion.button>
+                    <div className="flex gap-2 mt-2 items-center">
+                      <button
+                        className={`glass-button button-bounce flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 relative ${pulseId === prompt.id ? 'animate-pulse' : ''}`}
+                        onClick={e => { e.stopPropagation(); handleCopy(prompt.prompt, prompt.id); }}
+                      >
+                        {copiedId === prompt.id ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
+                        <span>{copiedId === prompt.id ? 'Copied!' : 'Kopieren'}</span>
+                        {pulseId === prompt.id && (
+                          <span className="absolute inset-0 rounded-lg bg-green-400/20 animate-pulse pointer-events-none" />
+                        )}
+                      </button>
+                      <button
+                        className={`ml-2 relative text-pink-400 transition-transform duration-200 ${favBounceId === prompt.id ? 'scale-125' : ''}`}
+                        onClick={e => { e.stopPropagation(); handleFavorite(prompt.id); }}
+                        aria-label="Favorit markieren"
+                      >
+                        {favorites.includes(prompt.id)
+                          ? <Heart className="w-6 h-6 fill-pink-400 text-pink-400 drop-shadow" fill="currentColor" />
+                          : <Heart className="w-6 h-6" />}
+                        {/* Partikel-Animation */}
+                        {favBounceId === prompt.id && favParticles.slice(-6).map((p, i) => (
+                          <span key={p.id} style={{
+                            position: 'absolute',
+                            left: `${p.left}%`,
+                            top: '-10px',
+                            width: 6,
+                            height: 6,
+                            borderRadius: '50%',
+                            background: 'rgba(255,99,132,0.7)',
+                            opacity: 0.7,
+                            animation: `particleUp 0.7s ${i*0.05}s ease-out forwards`
+                          }} />
+                        ))}
+                      </button>
+                    </div>
                   </div>
                   {/* Apple-Style Glow Effekt */}
                   <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{boxShadow:'0 0 60px 0 #fff, 0 0 120px 0 #f5f5f5'}} />
@@ -867,6 +883,14 @@ export default function PromptsPage() {
           </div>
         </motion.section>
       </div>
+      {/* CSS für Partikel-Animation */}
+      <style jsx global>{`
+        @keyframes particleUp {
+          0% { transform: translateY(0) scale(1); opacity: 0.7; }
+          80% { transform: translateY(-24px) scale(1.2); opacity: 0.8; }
+          100% { transform: translateY(-36px) scale(0.7); opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 } 
