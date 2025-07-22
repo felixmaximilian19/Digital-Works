@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import BlurText from '../components/BlurText';
 
 function useScrollReveal(className = 'fade-in', threshold = 0.15) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -242,9 +243,7 @@ export default function BestPracticesPage() {
           ref={headerRef}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient-cyan">Best Practices</span>
-          </h1>
+          <BlurText as="h1" text="Best Practices" />
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Umfassende Guidelines für erfolgreiche KI-Implementierung, Prompt Engineering und ethische Nutzung
           </p>
@@ -258,10 +257,10 @@ export default function BestPracticesPage() {
           className="mb-12"
         >
           <div className="card p-8 gradient-blue">
-            <h2 className="text-2xl font-bold text-white mb-4">KI-Landscape 2024-2025: Executive Summary</h2>
+            <BlurText as="h2" text="KI-Landscape 2024-2025: Executive Summary" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-white/90">
               <div>
-                <h3 className="text-lg font-semibold mb-3">Marktentwicklung</h3>
+                <BlurText as="h3" text="Marktentwicklung" />
                 <ul className="space-y-2 text-sm">
                   <li>• Agentische KI: 13,81 Milliarden US-Dollar Marktvolumen 2025</li>
                   <li>• Private KI-Investitionen: 109,1 Milliarden US-Dollar 2024</li>
@@ -270,7 +269,7 @@ export default function BestPracticesPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-3">Technologische Trends</h3>
+                <BlurText as="h3" text="Technologische Trends" />
                 <ul className="space-y-2 text-sm">
                   <li>• Erweiterte Kontextfenster (1M+ Tokens)</li>
                   <li>• Multimodale Integration</li>
@@ -323,7 +322,7 @@ export default function BestPracticesPage() {
               >
                 <div className="flex items-center mb-6">
                   <div className="text-3xl mr-4">{practice.icon}</div>
-                  <h3 className="text-xl font-bold text-white">{practice.title}</h3>
+                  <BlurText as="h3" text={practice.title} />
                 </div>
                 
                 <div className="space-y-4">
@@ -340,7 +339,7 @@ export default function BestPracticesPage() {
                         className="w-full text-left"
                       >
                         <div className="flex items-center justify-between">
-                          <h4 className="text-lg font-semibold text-white mb-2">{item.title}</h4>
+                          <BlurText as="h4" text={item.title} />
                           <span className="text-white/80">
                             {expandedPractice === itemIndex ? '−' : '+'}
                           </span>
@@ -357,7 +356,7 @@ export default function BestPracticesPage() {
                             transition={{ duration: 0.3 }}
                             className="mt-4 pt-4 border-t border-white/20"
                           >
-                            <h5 className="text-white font-medium mb-2">Praktische Tipps:</h5>
+                            <BlurText as="h5" text="Praktische Tipps:" />
                             <ul className="space-y-1">
                               {item.tips && item.tips.map((tip: string, tipIndex: number) => (
                                 <li key={tipIndex} className="text-white/80 text-sm flex items-start">
@@ -384,11 +383,11 @@ export default function BestPracticesPage() {
           transition={{ duration: 0.6, delay: 1.0 }}
           className="mt-16"
         >
-          <h2 className="text-2xl font-bold mb-6 text-center">KI-Implementierung Checklist</h2>
+          <BlurText as="h2" text="KI-Implementierung Checklist" />
           <div className="card p-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <h3 className="text-lg font-bold mb-4 text-cyan-400">Phase 1: Vorbereitung</h3>
+                <BlurText as="h3" text="Phase 1: Vorbereitung" />
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center">
                     <span className="text-cyan-400 mr-2">□</span>
@@ -409,7 +408,7 @@ export default function BestPracticesPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-lg font-bold mb-4 text-purple-400">Phase 2: Implementierung</h3>
+                <BlurText as="h3" text="Phase 2: Implementierung" />
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center">
                     <span className="text-purple-400 mr-2">□</span>
@@ -430,7 +429,7 @@ export default function BestPracticesPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-lg font-bold mb-4 text-orange-400">Phase 3: Skalierung</h3>
+                <BlurText as="h3" text="Phase 3: Skalierung" />
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center">
                     <span className="text-orange-400 mr-2">□</span>
@@ -462,14 +461,14 @@ export default function BestPracticesPage() {
           ref={resourcesRef}
           className="mt-16"
         >
-          <h2 className="text-2xl font-bold mb-6 text-center">Weitere Ressourcen</h2>
+          <BlurText as="h2" text="Weitere Ressourcen" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="card p-6 text-center hover-lift"
             >
               <div className="text-3xl mb-4">📚</div>
-              <h3 className="font-bold mb-2">KI-News</h3>
+              <BlurText as="h3" text="KI-News" />
               <p className="text-sm text-gray-400">Aktuelle Entwicklungen und Trends</p>
             </motion.div>
             <motion.div
@@ -477,7 +476,7 @@ export default function BestPracticesPage() {
               className="card p-6 text-center hover-lift"
             >
               <div className="text-3xl mb-4">🧠</div>
-              <h3 className="font-bold mb-2">KI-Modelle</h3>
+              <BlurText as="h3" text="KI-Modelle" />
               <p className="text-sm text-gray-400">Benchmarks und Vergleiche</p>
             </motion.div>
             <motion.div
@@ -485,7 +484,7 @@ export default function BestPracticesPage() {
               className="card p-6 text-center hover-lift"
             >
               <div className="text-3xl mb-4">🛠️</div>
-              <h3 className="font-bold mb-2">KI-Tools</h3>
+              <BlurText as="h3" text="KI-Tools" />
               <p className="text-sm text-gray-400">Praktische Anwendungen</p>
             </motion.div>
             <motion.div
@@ -493,7 +492,7 @@ export default function BestPracticesPage() {
               className="card p-6 text-center hover-lift"
             >
               <div className="text-3xl mb-4">💡</div>
-              <h3 className="font-bold mb-2">KI-Prompts</h3>
+              <BlurText as="h3" text="KI-Prompts" />
               <p className="text-sm text-gray-400">Optimierte Vorlagen</p>
             </motion.div>
           </div>

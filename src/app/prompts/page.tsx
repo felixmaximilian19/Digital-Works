@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Copy, Check, Star, BookOpen, Target, TrendingUp, Heart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import '../models/liquid-glass.css';
+import BlurText from '../components/BlurText';
 
 // Erweiterte KI-Prompts Data mit aktuellen Best Practices
 const promptsData = [
@@ -620,9 +621,7 @@ export default function PromptsPage() {
           ref={headerRef}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient-cyan">Prompts</span>
-          </h1>
+          <BlurText as="h1" text="Prompts" className="text-4xl md:text-5xl font-bold mb-4" />
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Professionelle Prompts für alle Bereiche - von Content Creation bis Code Review
           </p>
@@ -631,10 +630,7 @@ export default function PromptsPage() {
         {/* Featured Prompt */}
         {featuredPrompt && (
           <motion.section ref={featuredRef} className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 text-center flex items-center justify-center">
-              <Star className="w-6 h-6 mr-2 text-yellow-400" />
-              Prompt der Woche
-            </h2>
+            <BlurText as="h2" text="Prompt der Woche" className="text-2xl font-bold mb-6 text-center flex items-center justify-center" />
             <motion.div
               whileHover={{ scale: 1.02 }}
               className={`card p-8 ${featuredPrompt.gradient} hover-lift ring-2 ring-yellow-500/30`}
@@ -644,7 +640,7 @@ export default function PromptsPage() {
                   <div className="flex items-center mb-4">
                     <div className="text-4xl mr-4">{featuredPrompt.icon}</div>
                     <div>
-                      <h3 className="text-2xl font-bold text-white">{featuredPrompt.title}</h3>
+                      <BlurText as="h3" text={featuredPrompt.title} className="text-2xl font-bold text-white" />
                       <p className="text-white/80">{featuredPrompt.category} • {featuredPrompt.subcategory}</p>
                     </div>
                   </div>
@@ -659,23 +655,23 @@ export default function PromptsPage() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-white/70">Schwierigkeit:</span>
-                      <p className="text-white font-medium">{featuredPrompt.difficulty}</p>
+                      <BlurText as="p" text={featuredPrompt.difficulty} className="text-white font-medium" />
                     </div>
                     <div>
                       <span className="text-white/70">Kategorie:</span>
-                      <p className="text-white font-medium">{featuredPrompt.category}</p>
+                      <BlurText as="p" text={featuredPrompt.category} className="text-white font-medium" />
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-4">Verwendung</h4>
-                  <p className="text-white/90 mb-6">{featuredPrompt.usage}</p>
-                  <h4 className="text-lg font-semibold text-white mb-4">Beispiele</h4>
+                  <BlurText as="h4" text="Verwendung" className="text-lg font-semibold text-white mb-4" />
+                  <BlurText as="p" text={featuredPrompt.usage} className="text-white/90 mb-6" />
+                  <BlurText as="h4" text="Beispiele" className="text-lg font-semibold text-white mb-4" />
                   <div className="space-y-2 mb-6">
                     {featuredPrompt.examples.map((example, index) => (
                       <div key={index} className="flex items-center">
                         <span className="text-white/80 mr-2">•</span>
-                        <span className="text-white">{example}</span>
+                        <BlurText as="span" text={example} className="text-white" />
                       </div>
                     ))}
                   </div>
@@ -744,7 +740,7 @@ export default function PromptsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <h2 className="text-2xl font-bold mb-6 text-center text-white">Alle KI-Prompts</h2>
+          <BlurText as="h2" text="Alle KI-Prompts" className="text-2xl font-bold mb-6 text-center text-white" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             <AnimatePresence>
               {filteredPrompts.map((prompt, index) => (
@@ -763,31 +759,31 @@ export default function PromptsPage() {
                     <div className="flex items-center gap-3 mb-2">
                       <span className={`w-10 h-10 rounded-xl flex items-center justify-center text-2xl ${prompt.gradient}`}>{prompt.icon}</span>
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-1 leading-tight">{prompt.title}</h3>
-                        <p className="text-xs text-gray-400">{prompt.category} • {prompt.subcategory}</p>
+                        <BlurText as="h3" text={prompt.title} className="text-xl font-bold text-white mb-1 leading-tight" />
+                        <BlurText as="p" text={`${prompt.category} • ${prompt.subcategory}`} className="text-xs text-gray-400" />
                       </div>
                     </div>
-                    <p className="text-gray-200 text-base mb-2 min-h-[48px]">{prompt.description}</p>
+                    <BlurText as="p" text={prompt.description} className="text-gray-200 text-base mb-2 min-h-[48px]" />
                     <div className="flex flex-wrap gap-2 mb-2">
                       {prompt.tags.map((tag, i) => (
                         <span key={i} className="text-xs bg-orange-500/10 text-orange-300 px-2 py-1 rounded-full">{tag}</span>
                       ))}
                     </div>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-gray-400">{prompt.difficulty}</span>
-                      <span className="text-xs text-gray-500">{prompt.category}</span>
+                      <BlurText as="span" text={prompt.difficulty} className="text-sm text-gray-400" />
+                      <BlurText as="span" text={prompt.category} className="text-xs text-gray-500" />
                     </div>
                     <div className="mb-2">
-                      <span className="text-gray-400 text-xs">Verwendung:</span>
-                      <span className="text-gray-200 text-sm ml-2">{prompt.usage}</span>
+                      <BlurText as="span" text="Verwendung:" className="text-gray-400 text-xs" />
+                      <BlurText as="span" text={prompt.usage} className="text-gray-200 text-sm ml-2" />
                     </div>
                     <div className="mb-2">
-                      <span className="text-gray-400 text-xs">Beispiele:</span>
-                      <span className="text-gray-200 text-sm ml-2">{prompt.examples.join(', ')}</span>
+                      <BlurText as="span" text="Beispiele:" className="text-gray-400 text-xs" />
+                      <BlurText as="span" text={prompt.examples.join(', ')} className="text-gray-200 text-sm ml-2" />
                     </div>
                     <div className="mb-2">
-                      <span className="text-gray-400 text-xs">Prompt:</span>
-                      <span className="text-gray-200 text-sm ml-2 break-words">{prompt.prompt.slice(0, 120)}{prompt.prompt.length > 120 ? '...' : ''}</span>
+                      <BlurText as="span" text="Prompt:" className="text-gray-400 text-xs" />
+                      <BlurText as="span" text={prompt.prompt.slice(0, 120)}{prompt.prompt.length > 120 ? '...' : ''} className="text-gray-200 text-sm ml-2 break-words" />
                     </div>
                     <div className="flex gap-2 mt-2 items-center">
                       <button
@@ -840,7 +836,7 @@ export default function PromptsPage() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-16"
         >
-          <h2 className="text-3xl font-bold mb-8 text-center">Prompt Engineering Best Practices</h2>
+          <BlurText as="h2" text="Prompt Engineering Best Practices" className="text-3xl font-bold mb-8 text-center" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -848,11 +844,9 @@ export default function PromptsPage() {
             >
               <div className="flex items-center mb-4">
                 <Target className="w-8 h-8 text-blue-400 mr-3" />
-                <h3 className="text-xl font-bold">Klare Ziele</h3>
+                <BlurText as="h3" text="Klare Ziele" className="text-xl font-bold" />
               </div>
-              <p className="text-gray-300">
-                Definiere genau, was du erreichen möchtest. Je spezifischer dein Prompt, desto besser das Ergebnis.
-              </p>
+              <BlurText as="p" text="Definiere genau, was du erreichen möchtest. Je spezifischer dein Prompt, desto besser das Ergebnis." className="text-gray-300" />
             </motion.div>
 
             <motion.div
@@ -861,11 +855,9 @@ export default function PromptsPage() {
             >
               <div className="flex items-center mb-4">
                 <BookOpen className="w-8 h-8 text-green-400 mr-3" />
-                <h3 className="text-xl font-bold">Kontext geben</h3>
+                <BlurText as="h3" text="Kontext geben" className="text-xl font-bold" />
               </div>
-              <p className="text-gray-300">
-                Stelle die Rolle und den Kontext klar. Gib Beispiele und definiere das gewünschte Format.
-              </p>
+              <BlurText as="p" text="Stelle die Rolle und den Kontext klar. Gib Beispiele und definiere das gewünschte Format." className="text-gray-300" />
             </motion.div>
 
             <motion.div
@@ -874,11 +866,9 @@ export default function PromptsPage() {
             >
               <div className="flex items-center mb-4">
                 <TrendingUp className="w-8 h-8 text-purple-400 mr-3" />
-                <h3 className="text-xl font-bold">Iteration</h3>
+                <BlurText as="h3" text="Iteration" className="text-xl font-bold" />
               </div>
-              <p className="text-gray-300">
-                Verfeinere deine Prompts basierend auf den Ergebnissen. Teste verschiedene Ansätze.
-              </p>
+              <BlurText as="p" text="Verfeinere deine Prompts basierend auf den Ergebnissen. Teste verschiedene Ansätze." className="text-gray-300" />
             </motion.div>
           </div>
         </motion.section>

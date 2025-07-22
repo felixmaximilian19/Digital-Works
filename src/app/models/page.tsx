@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import './liquid-glass.css';
+import BlurText from '../../components/BlurText';
 
 // Executive Summary & Modelle (2024-2025)
 const executiveSummary = `Die Welt der Künstlichen Intelligenz entwickelt sich rasant weiter, mit neuen Modellen und Tools, die ständig die Grenzen des Möglichen verschieben. Dieser Leitfaden bietet einen tiefen Einblick in die führenden KI-Modelle und eine kuratierte Auswahl der besten KI-Tools in verschiedenen Anwendungsbereichen, einschliesslich ihrer Funktionen, Preismodelle und praktischen Nutzungshinweise.`;
@@ -13,31 +14,26 @@ const modelDetails = [
   {
     name: 'GPT-4.5 (OpenAI)',
     description: 'Vereinheitlichtes KI-System mit erweitertem Kontextfenster, nahtloser Integration wichtiger Funktionen. GPT-5 folgt Ende 2025.',
-    prices: 'Noch nicht veröffentlicht',
     highlights: 'Erweitertes Kontextfenster, native Integration, Fortschritte aus spezialisierten Modellen.'
   },
   {
     name: 'Grok 3 (xAI)',
     description: 'Signifikanter Sprung in Denkfähigkeit, 1M Token Kontext, Super Grok Agents für proaktive Aufgaben.',
-    prices: 'X Premium+ ($40/Monat), SuperGrok ($30/Monat oder $300/Jahr)',
     highlights: 'Mathematik, Wissenschaft, Code, Weltwissen, DeepSearch.'
   },
   {
     name: 'Gemini 2.0/2.5 Pro (Google DeepMind)',
     description: 'Large Action Models, multimodale Suite, native Tool-Nutzung, Bild- und Audioausgabe.',
-    prices: 'Experimentell/Kostenlos, Pro: $19.99/Monat, Ultra: $249.99/Monat',
     highlights: 'LAM, Gemini Live, Project Astra, Veo 3, Imagen 4.'
   },
   {
     name: 'DeepSeek R1 (DeepSeek AI)',
     description: 'Reasoning-First-Ansatz, komplexe Aufgaben in STEM, Open-Source, sehr kosteneffizient.',
-    prices: 'DeepSeek Chat: $0.07/Mio Input-Tokens, $1.10/Mio Output-Tokens',
     highlights: 'Mehrstufige Konversation, Chains of Thought.'
   },
   {
     name: 'Claude 3 Opus (Anthropic)',
     description: 'Multimodale Fähigkeiten, Bild-, Tabellen-, Graph- und Diagramm-Generierung.',
-    prices: 'API, Token-basiert, Claude Pro: $17-$20/Monat',
     highlights: 'Websuche, Computer-Nutzung, kostenloser Plan.'
   }
 ];
@@ -90,7 +86,7 @@ export default function ModelsPage() {
       <div className="max-w-5xl mx-auto">
         {/* Executive Summary */}
         <section className="mb-10 p-6 rounded-2xl bg-white/10 border border-white/10 shadow-lg">
-          <h1 className="text-3xl font-bold mb-2 text-white">KI-Modelle 2024-2025: Executive Summary</h1>
+          <BlurText as="h1" text="KI-Modelle 2024-2025: Executive Summary" className="text-3xl font-bold mb-2 text-white" />
           <p className="text-gray-200 text-lg mb-2">{executiveSummary}</p>
         </section>
         {/* Modelle Übersicht */}
@@ -100,7 +96,7 @@ export default function ModelsPage() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-2xl font-bold mb-4 text-white text-center">Führende KI-Modelle & Preise</h2>
+          <BlurText as="h2" text="Führende KI-Modelle & Preise" className="text-2xl font-bold mb-4 text-white text-center" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             <AnimatePresence>
               {modelDetails.map((model, idx) => (
@@ -114,9 +110,8 @@ export default function ModelsPage() {
                   whileHover={{ scale: 1.025 }}
                 >
                   <div className="p-7 flex flex-col gap-3">
-                    <h3 className="text-xl font-bold text-white mb-1 leading-tight font-sans">{model.name}</h3>
+                    <BlurText as="h3" text={model.name} className="text-xl font-bold text-white mb-1 leading-tight font-sans" />
                     <p className="text-gray-200 mb-2 font-sans">{model.description}</p>
-                    <div className="text-sm text-gray-400 mb-1"><b>Preise:</b> {model.prices}</div>
                     <div className="text-sm text-gray-400"><b>Highlights:</b> {model.highlights}</div>
                   </div>
                   <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{boxShadow:'0 0 60px 0 #fff, 0 0 120px 0 #f5f5f5'}} />
@@ -172,7 +167,7 @@ export default function ModelsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <h2 className="text-2xl font-bold mb-6 text-center text-white">Alle KI-Modelle</h2>
+          <BlurText as="h2" text="Alle KI-Modelle" className="text-2xl font-bold mb-6 text-center text-white" />
           <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             <AnimatePresence>
               {filteredModels.map((model, index) => (
@@ -190,7 +185,7 @@ export default function ModelsPage() {
                     <div className="flex items-center gap-3 mb-2">
                       <span className={`w-10 h-10 rounded-xl flex items-center justify-center text-2xl ${model.name.includes('Gemini') ? 'gradient-cyan' : model.name.includes('Claude') ? 'gradient-purple' : 'gradient-blue'}`} aria-label="Icon" role="img">{model.name.includes('Gemini') ? '🔮' : model.name.includes('Claude') ? '🦉' : '🤖'}</span>
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-1 leading-tight font-sans">{model.name}</h3>
+                        <BlurText as="h3" text={model.name} className="text-xl font-bold text-white mb-1 leading-tight font-sans" />
                         <p className="text-xs text-gray-400">{model.name.includes('Gemini') ? 'Google DeepMind' : model.name.includes('Claude') ? 'Anthropic' : 'OpenAI'}</p>
                       </div>
                     </div>

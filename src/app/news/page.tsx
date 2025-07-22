@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import '../models/liquid-glass.css';
+import BlurText from '../components/BlurText';
 
 // News Data mit Live-Update-Simulation
 const initialNewsData = [
@@ -182,9 +183,7 @@ export default function NewsPage() {
           ref={headerRef}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient-blue">KI-News</span>
-          </h1>
+          <BlurText as="h1" text="KI-News" className="text-4xl md:text-5xl font-bold mb-4" />
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Aktuelle Entwicklungen und Trends aus der Welt der Künstlichen Intelligenz
           </p>
@@ -243,7 +242,7 @@ export default function NewsPage() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-16"
         >
-          <h2 className="text-2xl font-bold mb-6 text-center text-white">Live KI-News</h2>
+          <BlurText as="h2" text="Live KI-News" className="text-2xl font-bold mb-6 text-center text-white" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {liveNews.map((news, index) => (
               <motion.a
@@ -259,7 +258,7 @@ export default function NewsPage() {
                 whileHover={{ scale: 1.025 }}
               >
                 <div className="p-7 flex flex-col gap-3">
-                  <h3 className="text-xl font-bold text-white mb-1 leading-tight font-sans">{news.title}</h3>
+                  <BlurText as="h3" text={news.title} className="text-xl font-bold text-white mb-1 leading-tight font-sans" />
                   <p className="text-gray-200 text-base mb-2 min-h-[48px] font-sans">{news.summary}</p>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm text-white/70">{news.date}</span>
@@ -280,7 +279,7 @@ export default function NewsPage() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mb-12"
           >
-            <h2 className="text-2xl font-bold mb-6 text-center">Featured News</h2>
+            <BlurText as="h2" text="Featured News" className="text-2xl font-bold mb-6 text-center" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {filteredNews.filter(news => news.featured).map((news, index) => (
                 <motion.div
@@ -296,7 +295,7 @@ export default function NewsPage() {
                     </span>
                     <span className="text-sm text-white/80">{news.readTime}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{news.title}</h3>
+                  <BlurText as="h3" text={news.title} className="text-xl font-bold text-white mb-3" />
                   <p className="text-white/90 mb-4">{news.summary}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-white/70">{news.date}</span>
@@ -333,7 +332,7 @@ export default function NewsPage() {
           transition={{ duration: 0.6, delay: 0.8 }}
           ref={newsCardsRef}
         >
-          <h2 className="text-2xl font-bold mb-6 text-center text-white">Aktuelle KI-News</h2>
+          <BlurText as="h2" text="Aktuelle KI-News" className="text-2xl font-bold mb-6 text-center text-white" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             <AnimatePresence>
               {filteredNews.map((news, index) => (
@@ -347,7 +346,7 @@ export default function NewsPage() {
                   whileHover={{ scale: 1.025 }}
                 >
                   <div className="p-7 flex flex-col gap-3">
-                    <h3 className="text-xl font-bold text-white mb-1 leading-tight font-sans">{news.title}</h3>
+                    <BlurText as="h3" text={news.title} className="text-xl font-bold text-white mb-1 leading-tight font-sans" />
                     <p className="text-gray-200 mb-2 font-sans">{news.summary}</p>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-semibold bg-white/20 text-white px-3 py-1 rounded-full">{news.category}</span>

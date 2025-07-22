@@ -5,6 +5,7 @@ import Link from "next/link";
 import Logo from "../components/Logo";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import BlurText from '../components/BlurText';
 
 function useScrollReveal(className = "fade-in", threshold = 0.15) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -142,34 +143,6 @@ export default function Home() {
   const heroRef = useScrollReveal("fade-in");
   const featuresRef = useScrollReveal("slide-up");
 
-  // Finvolv Features
-  const finvolvFeatures = [
-    {
-      icon: "🔒",
-      title: "Secure Payments & Transfers",
-      description:
-        "Send and receive money instantly with bank-grade encryption.",
-    },
-    {
-      icon: "🤖",
-      title: "AI-Powered Insights",
-      description:
-        "Get personalized financial advice and automated budgeting tips.",
-    },
-    {
-      icon: "📊",
-      title: "All-in-One Dashboard",
-      description:
-        "Track your spending, savings, investments, and goals in real time.",
-    },
-    {
-      icon: "🌍",
-      title: "Global Access",
-      description:
-        "Access your finances anytime, anywhere—from mobile to desktop.",
-    },
-  ];
-
   // AI Stack Features
   const aiStackFeatures = [
     {
@@ -195,65 +168,6 @@ export default function Home() {
       title: "Sicherheit & Vertrauen",
       description:
         "Wir legen großen Wert auf die Sicherheit und Vertraulichkeit Ihrer Daten.",
-    },
-  ];
-
-  // Testimonials
-  const testimonials = [
-    {
-      name: "Sophie L.",
-      quote:
-        "AI Stack hat unser Team produktiver gemacht – die KI-Modelle liefern endlich wirklich relevante Ergebnisse!",
-      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-      role: "Data Scientist, Startup"
-    },
-    {
-      name: "Max R.",
-      quote:
-        "Die Integration von AI Stack in unsere Workflows war super einfach. Die Live-Prompts sparen uns täglich Zeit!",
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      role: "Product Owner, SaaS"
-    },
-    {
-      name: "Lea S.",
-      quote:
-        "Die KI-Tools von AI Stack sind intuitiv, leistungsstark und machen richtig Spaß im Alltag!",
-      avatar: "https://randomuser.me/api/portraits/women/65.jpg",
-      role: "Freelancerin, KI-Consultant"
-    }
-  ];
-
-  // Pricing Plans
-  const pricingPlans = [
-    {
-      name: "Free",
-      price: "0€",
-      features: [
-        "Alle Basisfunktionen",
-        "Sichere Verwaltung",
-        "Community Support",
-      ],
-      highlight: false,
-    },
-    {
-      name: "Pro",
-      price: "12€",
-      features: [
-        "Alle Free-Features",
-        "Erweiterte KI-Analysen",
-        "Priorisierter Support",
-      ],
-      highlight: true,
-    },
-    {
-      name: "Enterprise",
-      price: "Kontakt",
-      features: [
-        "Individuelle Lösungen",
-        "Onboarding & Training",
-        "Premium Support",
-      ],
-      highlight: false,
     },
   ];
 
@@ -297,9 +211,7 @@ export default function Home() {
             className="mb-10"
           >
             <Logo size="xl" showText={true} className="mx-auto mb-6" />
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
-              Revolutionize the Way You Manage Money
-            </h1>
+            <BlurText as="h1" text="Revolutionize the Way You Manage Money" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
             <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Secure. Smart. Seamless. Manage, invest, and grow your money with
               confidence.
@@ -333,14 +245,7 @@ export default function Home() {
         className="py-20 px-6 bg-transparent"
       >
         <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-14"
-          >
-            Warum AI Stack?
-          </motion.h2>
+          <BlurText as="h2" text="Warum AI Stack?" className="text-3xl md:text-4xl font-bold text-center mb-14" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {aiStackFeatures.map((feature, idx) => (
               <motion.div
@@ -351,9 +256,7 @@ export default function Home() {
                 className="card p-8 text-center hover-lift"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold mb-2 text-white">
-                  {feature.title}
-                </h3>
+                <BlurText as="h3" text={feature.title} className="text-xl font-bold mb-2 text-white" />
                 <p className="text-gray-300 text-base">
                   {feature.description}
                 </p>
@@ -366,14 +269,7 @@ export default function Home() {
       {/* Quick Actions */}
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-12"
-          >
-            Schnellzugriff
-          </motion.h2>
+          <BlurText as="h2" text="Schnellzugriff" className="text-3xl md:text-4xl font-bold text-center mb-12" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {quickActions.map((action, index) => (
               <motion.div
@@ -389,9 +285,7 @@ export default function Home() {
                     className={`card p-6 text-center ${action.gradient} hover-lift`}
                   >
                     <div className="text-3xl mb-3">{action.icon}</div>
-                    <h3 className="text-white font-semibold">
-                      {action.name}
-                    </h3>
+                    <BlurText as="h3" text={action.name} className="text-white font-semibold" />
                   </div>
                 </Link>
               </motion.div>
@@ -403,14 +297,7 @@ export default function Home() {
       {/* Trends Section */}
       <section ref={useScrollReveal("slide-up")} className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-12"
-          >
-            Globale KI-Trends 2024-2025
-          </motion.h2>
+          <BlurText as="h2" text="Globale KI-Trends 2024-2025" className="text-3xl md:text-4xl font-bold text-center mb-12" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {trends.map((trend, index) => (
               <motion.div
@@ -427,9 +314,7 @@ export default function Home() {
                     {trend.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2">
-                      {trend.title}
-                    </h3>
+                    <BlurText as="h3" text={trend.title} className="text-xl font-bold mb-2" />
                     <p className="text-gray-300 mb-3">
                       {trend.description}
                     </p>
@@ -447,14 +332,7 @@ export default function Home() {
       {/* Top Models Section */}
       <section ref={useScrollReveal("slide-up")} className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-12"
-          >
-            Führende KI-Modelle
-          </motion.h2>
+          <BlurText as="h2" text="Führende KI-Modelle" className="text-3xl md:text-4xl font-bold text-center mb-12" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {topModels.map((model, index) => (
               <motion.div
@@ -471,9 +349,7 @@ export default function Home() {
                     {model.icon}
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold">
-                      {model.name}
-                    </h3>
+                    <BlurText as="h3" text={model.name} className="text-lg font-bold" />
                     <p className="text-sm text-gray-400">
                       {model.provider}
                     </p>
@@ -502,9 +378,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="card p-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Bereit für die KI-Revolution?
-            </h2>
+            <BlurText as="h2" text="Bereit für die KI-Revolution?" className="text-3xl md:text-4xl font-bold mb-6" />
             <p className="text-xl text-gray-300 mb-8">
               Entdecke die neuesten KI-Tools, Modelle und Best Practices
             </p>
@@ -534,14 +408,7 @@ export default function Home() {
         className="py-20 px-6 bg-transparent"
       >
         <div className="max-w-5xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-14"
-          >
-            How it Works
-          </motion.h2>
+          <BlurText as="h2" text="How it Works" className="text-3xl md:text-4xl font-bold text-center mb-14" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -571,102 +438,10 @@ export default function Home() {
                 className="card p-8 text-center hover-lift"
               >
                 <div className="text-4xl mb-4">{step.icon}</div>
-                <h3 className="text-xl font-bold mb-2 text-white">
-                  {step.title}
-                </h3>
+                <BlurText as="h3" text={step.title} className="text-xl font-bold mb-2 text-white" />
                 <p className="text-gray-300 text-base">
                   {step.description}
                 </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section (AI Stack) */}
-      <section
-        ref={useScrollReveal("fade-in")}
-        className="py-20 px-6 bg-transparent"
-      >
-        <div className="max-w-5xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-14"
-          >
-            Was unsere Nutzer sagen
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, idx) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="card p-8 text-center hover-lift"
-              >
-                <Image
-                  src={testimonial.avatar}
-                  alt={testimonial.name}
-                  width={64}
-                  height={64}
-                  className="w-16 h-16 rounded-full mx-auto mb-4 border-2 border-white/20"
-                />
-                <p className="text-gray-200 italic mb-4">
-                  “{testimonial.quote}”
-                </p>
-                <div className="font-bold text-white">
-                  {testimonial.name}
-                </div>
-                <div className="text-sm text-gray-400">
-                  {testimonial.role}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section (AI Stack) */}
-      <section
-        ref={useScrollReveal("slide-up")}
-        className="py-20 px-6 bg-transparent"
-      >
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-14"
-          >
-            Preise
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pricingPlans.map((plan, idx) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className={`card p-8 text-center hover-lift ${plan.highlight ? 'ring-2 ring-blue-500/30' : ''}`}
-              >
-                <h3 className="text-xl font-bold mb-2 text-white">
-                  {plan.name}
-                </h3>
-                <div className="text-3xl font-extrabold mb-4 text-gradient-blue">
-                  {plan.price}
-                </div>
-                <ul className="mb-6 space-y-2">
-                  {plan.features.map(f => (
-                    <li key={f} className="text-gray-300">
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <button className="px-6 py-2 rounded-lg gradient-blue text-white font-semibold hover-glow shadow-lg text-base">
-                  {plan.name === 'Enterprise' ? 'Kontakt aufnehmen' : 'Jetzt starten'}
-                </button>
               </motion.div>
             ))}
           </div>
@@ -679,14 +454,7 @@ export default function Home() {
         className="py-20 px-6 bg-transparent"
       >
         <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-14"
-          >
-            Aus dem Blog
-          </motion.h2>
+          <BlurText as="h2" text="Aus dem Blog" className="text-3xl md:text-4xl font-bold text-center mb-14" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {blogPosts.map((post, idx) => (
               <motion.div
@@ -703,9 +471,7 @@ export default function Home() {
                   height={128}
                   className="w-full h-32 object-contain mb-4"
                 />
-                <h3 className="text-lg font-bold mb-2 text-white">
-                  {post.title}
-                </h3>
+                <BlurText as="h3" text={post.title} className="text-lg font-bold mb-2 text-white" />
                 <p className="text-gray-300 text-base mb-4 flex-1">
                   {post.excerpt}
                 </p>
