@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { useEffect, useRef, useState, useMemo, ElementType, HTMLAttributes } from 'react';
 
-// Typen für Animation Keyframes
 interface AnimationStep {
   filter?: string;
   opacity?: number;
