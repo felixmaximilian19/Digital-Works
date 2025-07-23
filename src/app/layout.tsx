@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "../components/Navigation";
+import CookieBanner from "../components/CookieBanner";
 
 export const metadata: Metadata = {
   title: "AI Stack - KI-Landscape 2024-2025",
@@ -48,6 +49,7 @@ export default function RootLayout({
         <main className="pt-20">
           {children}
         </main>
+        <CookieBanner />
       </body>
     </html>
   );
