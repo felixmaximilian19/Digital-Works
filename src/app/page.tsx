@@ -193,27 +193,26 @@ export default function Home() {
             className="mb-10"
           >
             <Logo size="xl" showText={true} className="mx-auto mb-6" />
-            <BlurText as="h1" text="Revolutionize the Way You Manage Money" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
+            <BlurText as="h1" text="Die KI-Revolution beginnt hier" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
             <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Secure. Smart. Seamless. Manage, invest, and grow your money with
-              confidence.
+              Entdecke die neueste KI-Landschaft 2024-2025. Modelle, Tools, Prompts und Best Practices für deine KI-Journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
-                href="#demo"
+                href="/models"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-lg gradient-blue text-white font-semibold hover-glow shadow-lg text-lg"
               >
-                Watch Demo
+                KI-Modelle entdecken
               </motion.a>
               <motion.a
-                href="#features"
+                href="/prompts"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/5 transition-colors text-lg"
               >
-                Learn More
+                Prompts erkunden
               </motion.a>
             </div>
           </motion.div>
@@ -384,52 +383,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How it Works Section */}
-      <section
-        ref={useScrollReveal("slide-up")}
-        className="py-20 px-6 bg-transparent"
-      >
-        <div className="max-w-5xl mx-auto">
-          <BlurText as="h2" text="How it Works" className="text-3xl md:text-4xl font-bold text-center mb-14" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "📝",
-                title: "Sign Up Instantly",
-                description:
-                  "Create your account in seconds and get started right away.",
-              },
-              {
-                icon: "🔗",
-                title: "Connect & Explore",
-                description:
-                  "Link your accounts and discover powerful AI-driven features.",
-              },
-              {
-                icon: "🚀",
-                title: "Grow & Optimize",
-                description:
-                  "Let smart automation and insights help you reach your goals.",
-              },
-            ].map((step, idx) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: idx * 0.1 }}
-                className="card p-8 text-center hover-lift"
-              >
-                <div className="text-4xl mb-4">{step.icon}</div>
-                <BlurText as="h3" text={step.title} className="text-xl font-bold mb-2 text-white" />
-                <p className="text-gray-300 text-base">
-                  {step.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Blog Preview Section (AI Stack) */}
       <section
         ref={useScrollReveal("fade-in")}
@@ -481,7 +434,7 @@ export default function Home() {
             <Link href="/best-practices">Best Practices</Link>
           </div>
           <div className="text-gray-500 text-xs">
-            © {new Date().getFullYear()} Digital Works. All rights reserved.
+            © {new Date().getFullYear()} AI Stack. All rights reserved.
           </div>
         </div>
       </footer>
