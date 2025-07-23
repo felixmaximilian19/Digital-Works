@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import './liquid-glass.css';
 import BlurText from '../../components/BlurText';
@@ -74,10 +73,6 @@ export default function ModelsPage() {
     return matchesCategory && matchesProvider && matchesSearch;
   });
 
-  const featuredModel = modelDetails.find(model => model.name.includes("Gemini")); // Assuming Gemini is the most featured
-
-  const headerRef = useScrollReveal('fade-in');
-  const featuredRef = useScrollReveal('slide-up');
   const cardsRef = useScrollReveal('slide-up');
   const router = useRouter();
 

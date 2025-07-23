@@ -27,20 +27,6 @@ function useScrollReveal(className = "fade-in", threshold = 0.15) {
   return ref;
 }
 
-// Executive Summary Data
-const executiveSummary = {
-  title: "Die KI-Landschaft 2024-2025",
-  subtitle: "Ein umfassender Leitfaden zu Tools, Modellen und Best Practices",
-  description:
-    "Navigieren an der sich entwickelnden KI-Frontier - Dieser Bericht bietet eine umfassende Analyse der Landschaft der Künstlichen Intelligenz (KI) in den Jahren 2024-2025.",
-  keyPoints: [
-    "Agentische KI revolutioniert Arbeitsabläufe",
-    "Multimodale Fähigkeiten erreichen neue Höhen",
-    "Marktdynamik führt zu Demokratisierung der KI",
-    "Verantwortungsvolle KI-Entwicklung wird kritisch",
-  ],
-};
-
 // Trends Data
 const trends = [
   {
@@ -127,10 +113,6 @@ const quickActions = [
   },
 ];
 
-// Apple Loader Komponente
-function AppleLoader() {
-  return <div className="loader-apple" aria-label="Lädt..." />;
-}
 // Skeleton Loader Komponente
 function CardSkeleton() {
   return (

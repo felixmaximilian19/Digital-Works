@@ -76,8 +76,6 @@ const initialNewsData = [
   }
 ];
 
-const categories = ["Alle", "Marktanalyse", "Modell-Updates", "Forschung", "Finanzen", "Governance"];
-
 function useScrollReveal(className = 'fade-in', threshold = 0.15) {
   const ref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
