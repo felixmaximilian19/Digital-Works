@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Search, Filter, Star, ExternalLink, Zap, Shield, Sparkles, Layers } from 'lucide-react';
-import './tools-glass.css';
 import BlurText from '../../components/BlurText';
 
 // AI Tools Data - Strukturiert und kategorisiert
