@@ -88,7 +88,7 @@ export default function ModelsPage() {
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
           className="mb-12"
         >
           <BlurText as="h2" text="Führende KI-Modelle & Preise" className="text-2xl font-bold mb-4 text-white text-center" />
@@ -100,7 +100,7 @@ export default function ModelsPage() {
                   initial={{ opacity: 0, y: 40, scale: 0.98 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: idx * 0.08, type: 'spring', bounce: 0.18 }}
+                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
                   className="relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10"
                   whileHover={{ scale: 1.025 }}
                 >
@@ -120,7 +120,7 @@ export default function ModelsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
           className="mb-8"
         >
           <div className="flex flex-wrap gap-3 justify-center mb-4">
@@ -160,7 +160,7 @@ export default function ModelsPage() {
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
         >
           <BlurText as="h2" text="Alle KI-Modelle" className="text-2xl font-bold mb-6 text-center text-white" />
           <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -171,7 +171,7 @@ export default function ModelsPage() {
                   initial={{ opacity: 0, y: 40, scale: 0.98 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: index * 0.08, type: 'spring', bounce: 0.18 }}
+                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
                   className={`relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10 ${model.name.includes('Gemini') ? 'ring-2 ring-blue-500/30' : model.name.includes('Claude') ? 'ring-2 ring-purple-500/30' : ''}`}
                   onClick={() => model.name.includes('Gemini') ? window.open('https://ai.google.com/models/gemini', '_blank') : router.push(`/models/${modelDetails.findIndex(m => m.name === model.name) + 1}`)}
                   whileHover={{ scale: 1.025 }}

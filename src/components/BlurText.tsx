@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import React, { useEffect, useRef, useState, useMemo, ElementType, HTMLAttributes } from 'react';
 
-interface AnimationStep {
+type AnimationStep = {
   filter?: string;
   opacity?: number;
   y?: number;
-  [key: string]: any;
-}
+  [key: string]: string | number | undefined;
+};
 
 interface BlurTextProps extends HTMLAttributes<HTMLElement> {
   text?: string;
@@ -24,15 +24,25 @@ interface BlurTextProps extends HTMLAttributes<HTMLElement> {
   as?: ElementType;
 }
 
-const buildKeyframes = (from: AnimationStep, steps: AnimationStep[]): Record<string, any[]> => {
+const buildKeyframes = (
+  from: AnimationStep,
+  steps: AnimationStep[]
+): Record<string, (string | number | null)[]> => {
   const keys = new Set([
     ...Object.keys(from),
     ...steps.flatMap((s) => Object.keys(s)),
   ]);
 
-  const keyframes: Record<string, any[]> = {};
+  const keyframes: Record<string, (string | number | null)[]> = {};
   keys.forEach((k) => {
-    keyframes[k] = [from[k], ...steps.map((s) => s[k])];
+    const fromValue = from[k];
+    keyframes[k] = [
+      fromValue === undefined ? null : fromValue,
+      ...steps.map((s) => {
+        const stepValue = s[k];
+        return stepValue === undefined ? null : stepValue;
+      }),
+    ];
   });
   return keyframes;
 };

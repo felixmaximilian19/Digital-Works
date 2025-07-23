@@ -177,7 +177,7 @@ export default function NewsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
           ref={headerRef}
           className="text-center mb-12"
         >
@@ -191,7 +191,7 @@ export default function NewsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
           ref={liveUpdateRef}
           className="flex justify-center mb-8"
         >
@@ -237,7 +237,7 @@ export default function NewsPage() {
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
           className="mb-16"
         >
           <BlurText as="h2" text="Live KI-News" className="text-2xl font-bold mb-6 text-center text-white" />
@@ -251,7 +251,7 @@ export default function NewsPage() {
                 initial={{ opacity: 0, y: 40, scale: 0.98 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: index * 0.08, type: 'spring', bounce: 0.18 }}
+                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
                 className="relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10"
                 whileHover={{ scale: 1.025 }}
               >
@@ -274,7 +274,7 @@ export default function NewsPage() {
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
             className="mb-12"
           >
             <BlurText as="h2" text="Featured News" className="text-2xl font-bold mb-6 text-center" />
@@ -284,7 +284,7 @@ export default function NewsPage() {
                   key={news.id}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
                   className={`card p-8 ${news.gradient} hover-lift`}
                 >
                   <div className="flex items-center justify-between mb-4">
@@ -327,7 +327,7 @@ export default function NewsPage() {
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
           ref={newsCardsRef}
         >
           <BlurText as="h2" text="Aktuelle KI-News" className="text-2xl font-bold mb-6 text-center text-white" />
@@ -339,7 +339,7 @@ export default function NewsPage() {
                   initial={{ opacity: 0, y: 40, scale: 0.98 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: index * 0.08, type: 'spring', bounce: 0.18 }}
+                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
                   className="relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10"
                   whileHover={{ scale: 1.025 }}
                 >

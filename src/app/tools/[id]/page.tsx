@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Star, Users, Zap } from 'lucide-react';
+import BlurText from '../../../components/BlurText';
 
 // KI-Tools Data (same as in tools/page.tsx)
 const toolsData = [
@@ -17,7 +18,6 @@ const toolsData = [
     icon: "🤖",
     gradient: "gradient-blue",
     featured: true,
-    pricing: "Kostenlos + ChatGPT Plus ($20/Monat)",
     link: "https://chat.openai.com",
     features: ["Textgenerierung", "Code-Entwicklung", "Bildgenerierung", "Recherche"],
     useCases: ["Content Creation", "Programmierung", "Recherche", "Kreative Projekte"],
@@ -36,7 +36,6 @@ const toolsData = [
     icon: "🎨",
     gradient: "gradient-purple",
     featured: false,
-    pricing: "Ab $10/Monat (200 Bilder)",
     link: "https://midjourney.com",
     features: ["Filmische Bilder", "Zeichenkonsistenz", "Stilreferenz", "Bildreferenz"],
     useCases: ["Kunst", "Design", "Marketing", "Kreative Projekte"],
@@ -55,7 +54,6 @@ const toolsData = [
     icon: "✍️",
     gradient: "gradient-orange",
     featured: false,
-    pricing: "Ab $49/Monat pro Benutzer",
     link: "https://jasper.ai",
     features: ["Markenstimme", "SEO-Optimierung", "Verschiedene Töne", "Team-Kollaboration"],
     useCases: ["Marketing", "Content Marketing", "Social Media", "Werbung"],
@@ -74,7 +72,6 @@ const toolsData = [
     icon: "🎤",
     gradient: "gradient-pink",
     featured: false,
-    pricing: "Kostenlos + Pläne ab $1/Monat",
     link: "https://elevenlabs.io",
     features: ["Stimmklonung", "Text-to-Speech", "Dubbing", "Voice Changer"],
     useCases: ["Podcasts", "Audiobooks", "Videos", "Accessibility"],
@@ -93,7 +90,6 @@ const toolsData = [
     icon: "🎬",
     gradient: "gradient-cyan",
     featured: false,
-    pricing: "Kostenlos + Pläne ab $15/Monat",
     link: "https://runwayml.com",
     features: ["Video-Editing", "Bildgenerierung", "Stylized Videos", "Export in HD"],
     useCases: ["Filmproduktion", "Marketing", "Social Media", "Kreative Projekte"],
@@ -112,7 +108,6 @@ const toolsData = [
     icon: "💻",
     gradient: "gradient-blue",
     featured: false,
-    pricing: "Kostenpflichtig (Abonnement pro Benutzer)",
     link: "https://github.com/features/copilot",
     features: ["Code-Vorschläge", "Debugging", "Multi-Sprache", "IDE-Integration"],
     useCases: ["Software-Entwicklung", "Programmierung", "Code-Review", "Prototyping"],
@@ -131,7 +126,6 @@ const toolsData = [
     icon: "📝",
     gradient: "gradient-purple",
     featured: false,
-    pricing: "Business-Plan $20/Monat pro Benutzer",
     link: "https://notion.so",
     features: ["Dokumentenerstellung", "Aufgabenverwaltung", "Zusammenfassungen", "Intelligente Vorschläge"],
     useCases: ["Projektmanagement", "Wissensmanagement", "Team-Kollaboration", "Persönliche Organisation"],
@@ -150,7 +144,6 @@ const toolsData = [
     icon: "👤",
     gradient: "gradient-orange",
     featured: false,
-    pricing: "Ab $29/Monat (10 Minuten Video)",
     link: "https://synthesia.io",
     features: ["230+ Avatare", "140+ Sprachen", "Persönliche Avatare", "Stimmklonung"],
     useCases: ["Schulungen", "Marketing", "E-Learning", "Präsentationen"],
@@ -171,7 +164,7 @@ export default function ToolDetailPage() {
     return (
       <div className="min-h-screen py-8 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-2xl font-bold mb-4">Tool nicht gefunden</h1>
+          <BlurText as="h1" text="Tool nicht gefunden" />
           <Link href="/tools" className="text-blue-400 hover:text-blue-300">
             Zurück zu allen Tools
           </Link>
@@ -211,7 +204,7 @@ export default function ToolDetailPage() {
               <div className="flex items-center mb-6">
                 <div className="text-6xl mr-6">{tool.icon}</div>
                 <div>
-                  <h1 className="text-4xl font-bold text-white mb-2">{tool.name}</h1>
+                  <BlurText as="h1" text={tool.name} />
                   <p className="text-white/80 text-lg">{tool.category} • {tool.subcategory}</p>
                 </div>
               </div>
@@ -241,15 +234,11 @@ export default function ToolDetailPage() {
             </div>
             <div className="space-y-4">
               <div className="bg-white/10 p-4 rounded-lg">
-                <h3 className="text-white font-semibold mb-2">Preis</h3>
-                <p className="text-white/90">{tool.pricing}</p>
-              </div>
-              <div className="bg-white/10 p-4 rounded-lg">
-                <h3 className="text-white font-semibold mb-2">Kategorie</h3>
+                <BlurText as="h3" text="Kategorie" />
                 <p className="text-white/90">{tool.category} • {tool.subcategory}</p>
               </div>
               <div className="bg-white/10 p-4 rounded-lg">
-                <h3 className="text-white font-semibold mb-2">Anwendungsfälle</h3>
+                <BlurText as="h3" text="Anwendungsfälle" />
                 <div className="space-y-1">
                   {tool.useCases.map((useCase, index) => (
                     <p key={index} className="text-white/80 text-sm">• {useCase}</p>
@@ -270,10 +259,7 @@ export default function ToolDetailPage() {
             className="space-y-6"
           >
             <div className="bg-white/5 rounded-3xl shadow-xl overflow-hidden border border-white/10 p-6">
-              <h2 className="text-2xl font-bold mb-4 flex items-center">
-                <Zap className="w-6 h-6 mr-2 text-green-400" />
-                Vorteile
-              </h2>
+              <BlurText as="h2" text="Vorteile" />
               <ul className="space-y-2">
                 {tool.pros.map((pro, index) => (
                   <li key={index} className="flex items-start">
@@ -285,10 +271,7 @@ export default function ToolDetailPage() {
             </div>
 
             <div className="bg-white/5 rounded-3xl shadow-xl overflow-hidden border border-white/10 p-6">
-              <h2 className="text-2xl font-bold mb-4 flex items-center">
-                <Zap className="w-6 h-6 mr-2 text-red-400" />
-                Nachteile
-              </h2>
+              <BlurText as="h2" text="Nachteile" />
               <ul className="space-y-2">
                 {tool.cons.map((con, index) => (
                   <li key={index} className="flex items-start">
@@ -308,10 +291,7 @@ export default function ToolDetailPage() {
             className="space-y-6"
           >
             <div className="bg-white/5 rounded-3xl shadow-xl overflow-hidden border border-white/10 p-6">
-              <h2 className="text-2xl font-bold mb-4 flex items-center">
-                <Users className="w-6 h-6 mr-2 text-blue-400" />
-                Alternativen
-              </h2>
+              <BlurText as="h2" text="Alternativen" />
               <div className="flex flex-wrap gap-2">
                 {tool.alternatives.map((alternative, index) => (
                   <span key={index} className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm">
@@ -322,10 +302,7 @@ export default function ToolDetailPage() {
             </div>
 
             <div className="bg-white/5 rounded-3xl shadow-xl overflow-hidden border border-white/10 p-6">
-              <h2 className="text-2xl font-bold mb-4 flex items-center">
-                <Star className="w-6 h-6 mr-2 text-yellow-400" />
-                Tipps & Tricks
-              </h2>
+              <BlurText as="h2" text="Tipps & Tricks" />
               <ul className="space-y-2">
                 {tool.tips.map((tip, index) => (
                   <li key={index} className="flex items-start">
@@ -345,7 +322,7 @@ export default function ToolDetailPage() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-12"
         >
-          <h2 className="text-2xl font-bold mb-6">Ähnliche Tools</h2>
+          <BlurText as="h2" text="Ähnliche Tools" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {toolsData
               .filter(t => t.category === tool.category && t.id !== tool.id)
@@ -359,7 +336,7 @@ export default function ToolDetailPage() {
                   <div className="flex items-center mb-4">
                     <div className="text-3xl mr-3">{relatedTool.icon}</div>
                     <div>
-                      <h3 className="font-bold text-white">{relatedTool.name}</h3>
+                      <BlurText as="h3" text={relatedTool.name} />
                       <p className="text-gray-400 text-sm">{relatedTool.category}</p>
                     </div>
                   </div>

@@ -1,1 +1,15 @@
- 
+# 1. Änderungen zum Commit vormerken
+git add digitalworks/src/app/page.tsx \
+        digitalworks/src/app/models/page.tsx \
+        digitalworks/src/app/tools/page.tsx \
+        digitalworks/src/app/tools/[id]/page.tsx
+
+# 2. Commit mit aussagekräftiger Nachricht erstellen
+git commit -m "Remove Bewertungen, Preise, Finvolv-Texte; vereinheitliche Icons; Branding auf AI Stack"
+
+# 3. Änderungen ins Remote-Repository pushen (z.B. für Netlify-Deployment)
+git push
+
+# 4. (Optional) Lokalen Entwicklungsserver starten, um alles zu testen
+cd digitalworks
+npm run dev 

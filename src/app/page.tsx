@@ -189,7 +189,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
             className="mb-10"
           >
             <Logo size="xl" showText={true} className="mx-auto mb-6" />
@@ -234,7 +234,7 @@ export default function Home() {
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: idx * 0.1 }}
                 className="card p-8 text-center hover-lift"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
@@ -258,7 +258,7 @@ export default function Home() {
                 key={action.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -286,7 +286,7 @@ export default function Home() {
                 key={trend.id}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: index * 0.1 }}
                 className="card p-8 hover-lift"
               >
                 <div className="flex items-start space-x-4">
@@ -321,7 +321,7 @@ export default function Home() {
                 key={model.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: index * 0.1 }}
                 className={`card p-6 ${model.featured ? "ring-2 ring-blue-500/30" : ""} hover-lift`}
               >
                 <div className="flex items-center mb-4">
@@ -357,7 +357,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
             className="card p-12"
           >
             <BlurText as="h2" text="Bereit für die KI-Revolution?" className="text-3xl md:text-4xl font-bold mb-6" />
@@ -416,7 +416,7 @@ export default function Home() {
                 key={step.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: idx * 0.1 }}
                 className="card p-8 text-center hover-lift"
               >
                 <div className="text-4xl mb-4">{step.icon}</div>
@@ -443,7 +443,7 @@ export default function Home() {
                 key={post.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: idx * 0.1 }}
                 className="card p-6 hover-lift flex flex-col"
               >
                 <Image

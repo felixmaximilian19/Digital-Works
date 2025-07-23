@@ -239,7 +239,7 @@ export default function BestPracticesPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
           ref={headerRef}
           className="text-center mb-12"
         >
@@ -253,7 +253,7 @@ export default function BestPracticesPage() {
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: 0.2 }}
           className="mb-12"
         >
           <div className="card p-8 gradient-blue">
@@ -285,7 +285,7 @@ export default function BestPracticesPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: 0.4 }}
           className="flex flex-wrap justify-center gap-3 mb-12"
         >
           {categories.map((category) => (
@@ -309,7 +309,7 @@ export default function BestPracticesPage() {
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: 0.6 }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {filteredPractices.map((practice, index) => (
@@ -317,7 +317,7 @@ export default function BestPracticesPage() {
                 key={practice.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
+                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: 0.8 + index * 0.1 }}
                 className={`card p-6 ${practice.gradient} hover-lift`}
               >
                 <div className="flex items-center mb-6">
@@ -331,7 +331,7 @@ export default function BestPracticesPage() {
                       key={itemIndex}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: 1.0 + index * 0.1 + itemIndex * 0.1 }}
+                      transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: 1.0 + index * 0.1 + itemIndex * 0.1 }}
                       className="bg-white/10 rounded-lg p-4"
                     >
                       <motion.button
@@ -380,7 +380,7 @@ export default function BestPracticesPage() {
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: 1.0 }}
           className="mt-16"
         >
           <BlurText as="h2" text="KI-Implementierung Checklist" />
@@ -457,7 +457,7 @@ export default function BestPracticesPage() {
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
+          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: 1.2 }}
           ref={resourcesRef}
           className="mt-16"
         >
