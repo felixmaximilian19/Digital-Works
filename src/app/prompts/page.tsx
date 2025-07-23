@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Copy, Check, Star, BookOpen, Target, TrendingUp, Heart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import '../models/liquid-glass.css';
 import BlurText from '../../components/BlurText';
 
 // Erweiterte KI-Prompts Data mit aktuellen Best Practices
