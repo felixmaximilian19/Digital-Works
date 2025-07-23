@@ -7,9 +7,11 @@ import { Menu, X, Search } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Dashboard" },
-  { href: "/news", label: "KI-News" },
-  { href: "/prompts", label: "KI-Prompts" },
+  { href: "/models", label: "KI-Modelle" },
   { href: "/tools", label: "KI-Tools" },
+  { href: "/prompts", label: "Prompts" },
+  { href: "/news", label: "News" },
+  { href: "/best-practices", label: "Best Practices" },
 ];
 
 export default function Navigation() {
