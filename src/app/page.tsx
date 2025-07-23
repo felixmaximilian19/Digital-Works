@@ -6,6 +6,8 @@ import Logo from "../components/Logo";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import BlurText from '../components/BlurText';
+import FadeContent from '../components/FadeContent';
+import AnimatedMeshGradient from '../components/AnimatedMeshGradient';
 
 function useScrollReveal(className = "fade-in", threshold = 0.15) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -180,12 +182,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section (Finvolv Style) */}
+      {/* Hero Section (with Animated Mesh Background) */}
       <section
         ref={heroRef}
-        className="relative py-28 px-6 bg-gradient-to-br from-blue-900/60 to-black/90"
+        className="relative py-28 px-6 bg-gradient-to-br from-blue-900/60 to-black/90 overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <AnimatedMeshGradient className="z-0" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -193,27 +196,26 @@ export default function Home() {
             className="mb-10"
           >
             <Logo size="xl" showText={true} className="mx-auto mb-6" />
-            <BlurText as="h1" text="Revolutionize the Way You Manage Money" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
-            <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Secure. Smart. Seamless. Manage, invest, and grow your money with
-              confidence.
-            </p>
+            <BlurText text="AI Stack - Die KI-Landschaft 2024-2025" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
+            <FadeContent delay={500} className="text-lg md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Entdecke die umfassendste Übersicht der KI-Tools, Modelle und Trends für 2024-2025. Von führenden KI-Modellen bis zu spezialisierten Tools für jeden Anwendungsfall.
+            </FadeContent>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
-                href="#demo"
+                href="#tools"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-lg gradient-blue text-white font-semibold hover-glow shadow-lg text-lg"
               >
-                Watch Demo
+                KI-Tools entdecken
               </motion.a>
               <motion.a
-                href="#features"
+                href="#models"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/5 transition-colors text-lg"
               >
-                Learn More
+                KI-Modelle erkunden
               </motion.a>
             </div>
           </motion.div>
