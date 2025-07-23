@@ -6,6 +6,7 @@ import Logo from "../components/Logo";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import BlurText from '../components/BlurText';
+import FadeContent from '../components/FadeContent';
 
 function useScrollReveal(className = "fade-in", threshold = 0.15) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -63,25 +64,29 @@ const trends = [
   },
 ];
 
-// Top Models
-const topModels = [
+// Leading AI Models 2024-2025
+const leadingAIModels = [
   {
     id: 1,
     name: "GPT-4.5",
     provider: "OpenAI",
-    description: "Unified AI System mit erweiterten Denkfähigkeiten",
+    description: "Vereinheitlichtes KI-System mit erweitertem Kontextfenster",
     icon: "🧠",
     gradient: "gradient-blue",
     featured: true,
+    price: "Preis nach Verbrauch",
+    website: "https://openai.com"
   },
   {
     id: 2,
     name: "Grok 3",
     provider: "xAI",
-    description: "1 Million Tokens Kontext, Super Grok Agents",
+    description: "1 Million Tokens Kontext, Super Grok Agents, $40/Monat",
     icon: "🚀",
     gradient: "gradient-purple",
-    featured: false,
+    featured: true,
+    price: "$40/Monat",
+    website: "https://x.ai"
   },
   {
     id: 3,
@@ -90,8 +95,268 @@ const topModels = [
     description: "Large Action Models, multimodale Suite",
     icon: "🔍",
     gradient: "gradient-orange",
-    featured: false,
+    featured: true,
+    price: "$19.99-249.99/Monat",
+    website: "https://gemini.google.com"
   },
+  {
+    id: 4,
+    name: "DeepSeek R1",
+    provider: "DeepSeek AI",
+    description: "Open-Source, Reasoning-First-Ansatz, 30x günstiger",
+    icon: "🔬",
+    gradient: "gradient-cyan",
+    featured: false,
+    price: "Open-Source",
+    website: "https://www.deepseek.com"
+  },
+  {
+    id: 5,
+    name: "Claude 3 Opus",
+    provider: "Anthropic",
+    description: "Multimodale Fähigkeiten, $17-20/Monat",
+    icon: "💎",
+    gradient: "gradient-pink",
+    featured: false,
+    price: "$17-20/Monat",
+    website: "https://claude.ai"
+  },
+];
+
+// AI Tools by Category
+const aiToolsCategories = [
+  {
+    id: 1,
+    title: "KI-Text- und Schreibtools",
+    icon: "✍️",
+    gradient: "gradient-blue",
+    tools: [
+      {
+        name: "Jasper AI",
+        description: "Inhaltserstellung, SEO-optimiert",
+        price: "$49-69/Monat",
+        website: "https://www.jasper.ai",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Notion AI",
+        description: "Automatisierung, intelligente Vorschläge",
+        price: "$20/Monat",
+        website: "https://www.notion.so",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Grammarly",
+        description: "KI-Schreibassistent, Plagiatserkennung",
+        price: "Freemium",
+        website: "https://www.grammarly.com",
+        image: "/api/placeholder/200/120"
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "KI-Bild- und Design-Tools",
+    icon: "🎨",
+    gradient: "gradient-purple",
+    tools: [
+      {
+        name: "Midjourney",
+        description: "Filmische Bilder, Zeichenkonsistenz",
+        price: "$10/Monat",
+        website: "https://www.midjourney.com",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "DALL·E",
+        description: "Genaue Textwiedergabe",
+        price: "ChatGPT Plus $20/Monat",
+        website: "https://openai.com/dall-e",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Stable Diffusion",
+        description: "Open-Source, Prompt-Adhärenz",
+        price: "Kostenlos/Open-Source",
+        website: "https://stability.ai",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Adobe Firefly",
+        description: "Adobe-Integration, SVG-Generierung",
+        price: "$4.99/Monat",
+        website: "https://www.adobe.com/products/firefly.html",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Ideogram",
+        description: "Beste Textwiedergabe",
+        price: "$7/Monat",
+        website: "https://ideogram.ai",
+        image: "/api/placeholder/200/120"
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "KI-Video- und Animations-Tools",
+    icon: "🎬",
+    gradient: "gradient-orange",
+    tools: [
+      {
+        name: "Synthesia",
+        description: "KI-Avatare, 140+ Sprachen",
+        price: "$29-89/Monat",
+        website: "https://www.synthesia.io",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Google Veo 2 & 3",
+        description: "Filmische Videos mit Sound",
+        price: "$19.99-249.99/Monat",
+        website: "https://deepmind.google/technologies/veo/",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "OpenAI Sora",
+        description: "ChatGPT-Integration",
+        price: "$20-200/Monat",
+        website: "https://openai.com/sora",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Runway",
+        description: "Erweiterte Videobearbeitung",
+        price: "$15-95/Monat",
+        website: "https://runwayml.com",
+        image: "/api/placeholder/200/120"
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: "KI-Audio-Tools",
+    icon: "🎤",
+    gradient: "gradient-pink",
+    tools: [
+      {
+        name: "ElevenLabs",
+        description: "Sprachsynthese, Voice Cloning",
+        price: "$1-99/Monat",
+        website: "https://elevenlabs.io",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Descript",
+        description: "Video/Podcast-Bearbeitung",
+        price: "$24-32/Monat",
+        website: "https://www.descript.com",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Murf.ai",
+        description: "Text-zu-Sprache, 20+ Sprachen",
+        price: "$19-199/Monat",
+        website: "https://murf.ai",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "LALAL.AI",
+        description: "Audio-Trennung, Qualitätsverbesserung",
+        price: "$20-35",
+        website: "https://www.lalal.ai",
+        image: "/api/placeholder/200/120"
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: "KI-Code- und Entwicklungs-Tools",
+    icon: "💻",
+    gradient: "gradient-cyan",
+    tools: [
+      {
+        name: "GitHub Copilot",
+        description: "Paar-Programmierung, IDE-Integration",
+        price: "Microsoft",
+        website: "https://github.com/features/copilot",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Amazon Q Developer",
+        description: "AWS-optimiert, Multi-Datei-Änderungen",
+        price: "$19/Monat",
+        website: "https://aws.amazon.com/q/developer/",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Google Gemini Code Assist",
+        description: "Google Cloud-Integration",
+        price: "$19.99-249.99/Monat",
+        website: "https://cloud.google.com/products/ai",
+        image: "/api/placeholder/200/120"
+      },
+      {
+        name: "Tabnine",
+        description: "Datenschutz-fokussiert, 30+ Sprachen",
+        price: "$9-39/Monat",
+        website: "https://www.tabnine.com",
+        image: "/api/placeholder/200/120"
+      }
+    ]
+  }
+];
+
+// Customer Reviews
+const customerReviews = [
+  {
+    id: 1,
+    name: "Sarah M.",
+    company: "Tech Startup",
+    rating: 5,
+    review: "Die Übersicht über KI-Tools hat unserem Team geholfen, die richtigen Entscheidungen zu treffen. Besonders hilfreich war die Preisvergleich.",
+    avatar: "SM"
+  },
+  {
+    id: 2,
+    name: "Marcus K.",
+    company: "Marketing Agentur",
+    rating: 5,
+    review: "Endlich eine verständliche Zusammenfassung aller wichtigen KI-Modelle. Midjourney und DALL·E Vergleiche waren Gold wert.",
+    avatar: "MK"
+  },
+  {
+    id: 3,
+    name: "Jennifer L.",
+    company: "Content Creator",
+    rating: 4,
+    review: "Jasper AI und Notion AI Empfehlungen haben meine Produktivität verdoppelt. Sehr detaillierte Bewertungen.",
+    avatar: "JL"
+  },
+  {
+    id: 4,
+    name: "David R.",
+    company: "Software Engineer",
+    rating: 5,
+    review: "GitHub Copilot vs. Amazon Q Vergleich war genau das, was ich gesucht habe. Perfekte Zusammenfassung für Entwickler.",
+    avatar: "DR"
+  },
+  {
+    id: 5,
+    name: "Anna T.",
+    company: "E-Learning",
+    rating: 4,
+    review: "Die Kategorisierung der Tools ist sehr durchdacht. Hat mir bei der Auswahl für unser Bildungsprojekt sehr geholfen.",
+    avatar: "AT"
+  },
+  {
+    id: 6,
+    name: "Thomas B.",
+    company: "Consultant",
+    rating: 5,
+    review: "Comprehensive und aktuell. Die Preisinformationen sind besonders wertvoll für Budgetplanung von Kunden.",
+    avatar: "TB"
+  }
 ];
 
 // Quick Actions
@@ -193,10 +458,9 @@ export default function Home() {
             className="mb-10"
           >
             <Logo size="xl" showText={true} className="mx-auto mb-6" />
-            <BlurText as="h1" text="Revolutionize the Way You Manage Money" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
+            <BlurText as="h1" text="KI-Landscape 2024-2025: Vollständige Übersicht" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
             <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Secure. Smart. Seamless. Manage, invest, and grow your money with
-              confidence.
+              Führende KI-Modelle, Tools und Best Practices für die Zukunft der künstlichen Intelligenz.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
@@ -228,23 +492,25 @@ export default function Home() {
       >
         <div className="max-w-6xl mx-auto">
           <BlurText as="h2" text="Warum AI Stack?" className="text-3xl md:text-4xl font-bold text-center mb-14" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {aiStackFeatures.map((feature, idx) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: idx * 0.1 }}
-                className="card p-8 text-center hover-lift"
-              >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <BlurText as="h3" text={feature.title} className="text-xl font-bold mb-2 text-white" />
-                <p className="text-gray-300 text-base">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+          <FadeContent delay={100}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {aiStackFeatures.map((feature, idx) => (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: idx * 0.1 }}
+                  className="card p-8 text-center hover-lift"
+                >
+                  <div className="text-4xl mb-4">{feature.icon}</div>
+                  <BlurText as="h3" text={feature.title} className="text-xl font-bold mb-2 text-white" />
+                  <p className="text-gray-300 text-base">
+                    {feature.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </FadeContent>
         </div>
       </section>
 
@@ -252,27 +518,29 @@ export default function Home() {
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <BlurText as="h2" text="Schnellzugriff" className="text-3xl md:text-4xl font-bold text-center mb-12" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {quickActions.map((action, index) => (
-              <motion.div
-                key={action.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link href={action.href} className="block">
-                  <div
-                    className={`card p-6 text-center ${action.gradient} hover-lift`}
-                  >
-                    <div className="text-3xl mb-3">{action.icon}</div>
-                    <BlurText as="h3" text={action.name} className="text-white font-semibold" />
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+          <FadeContent delay={150}>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {quickActions.map((action, index) => (
+                <motion.div
+                  key={action.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link href={action.href} className="block">
+                    <div
+                      className={`card p-6 text-center ${action.gradient} hover-lift`}
+                    >
+                      <div className="text-3xl mb-3">{action.icon}</div>
+                      <BlurText as="h3" text={action.name} className="text-white font-semibold" />
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </FadeContent>
         </div>
       </section>
 
@@ -311,43 +579,153 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Top Models Section */}
+      {/* Leading AI Models Section */}
       <section ref={useScrollReveal("slide-up")} className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          <BlurText as="h2" text="Führende KI-Modelle" className="text-3xl md:text-4xl font-bold text-center mb-12" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {topModels.map((model, index) => (
-              <motion.div
-                key={model.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: index * 0.1 }}
-                className={`card p-6 ${model.featured ? "ring-2 ring-blue-500/30" : ""} hover-lift`}
-              >
-                <div className="flex items-center mb-4">
-                  <div
-                    className={`w-12 h-12 rounded-lg ${model.gradient} flex items-center justify-center text-xl mr-3`}
+          <BlurText as="h2" text="Führende KI-Modelle 2024-2025" className="text-3xl md:text-4xl font-bold text-center mb-12" />
+          <FadeContent delay={200}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {leadingAIModels.map((model, index) => (
+                <motion.div
+                  key={model.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: index * 0.1 }}
+                  className={`card p-6 ${model.featured ? "ring-2 ring-blue-500/30" : ""} hover-lift`}
+                >
+                  <div className="flex items-center mb-4">
+                    <div
+                      className={`w-12 h-12 rounded-lg ${model.gradient} flex items-center justify-center text-xl mr-3`}
+                    >
+                      {model.icon}
+                    </div>
+                    <div>
+                      <BlurText as="h3" text={model.name} className="text-lg font-bold" />
+                      <p className="text-sm text-gray-400">
+                        {model.provider}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-sm mb-3">
+                    {model.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-blue-400">{model.price}</span>
+                    {model.featured && (
+                      <span className="inline-block bg-blue-500/20 text-blue-300 text-xs px-2 py-1 rounded-full">
+                        ⭐ Featured
+                      </span>
+                    )}
+                  </div>
+                  <motion.a
+                    href={model.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-4 block text-center px-4 py-2 rounded-lg gradient-blue text-white font-semibold hover-glow text-sm"
                   >
-                    {model.icon}
+                    Website besuchen
+                  </motion.a>
+                </motion.div>
+              ))}
+            </div>
+          </FadeContent>
+        </div>
+      </section>
+
+      {/* AI Tools Categories Section */}
+      <section ref={useScrollReveal("slide-up")} className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <BlurText as="h2" text="Kategorisierte KI-Tools" className="text-3xl md:text-4xl font-bold text-center mb-12" />
+          <FadeContent delay={300}>
+            <div className="space-y-12">
+              {aiToolsCategories.map((category, categoryIndex) => (
+                <motion.div
+                  key={category.id}
+                  initial={{ opacity: 0, x: categoryIndex % 2 === 0 ? -20 : 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: categoryIndex * 0.2 }}
+                  className="card p-8"
+                >
+                  <div className="flex items-center mb-6">
+                    <div className={`w-16 h-16 rounded-xl ${category.gradient} flex items-center justify-center text-2xl mr-4`}>
+                      {category.icon}
+                    </div>
+                    <BlurText as="h3" text={category.title} className="text-2xl font-bold" />
                   </div>
-                  <div>
-                    <BlurText as="h3" text={model.name} className="text-lg font-bold" />
-                    <p className="text-sm text-gray-400">
-                      {model.provider}
-                    </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {category.tools.map((tool, toolIndex) => (
+                      <motion.div
+                        key={`${category.id}-${toolIndex}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: (categoryIndex * 0.2) + (toolIndex * 0.1) }}
+                        className="glass-panel p-4 hover-lift"
+                      >
+                        <img 
+                          src={tool.image} 
+                          alt={tool.name}
+                          className="w-full h-24 object-cover rounded-lg mb-3"
+                        />
+                        <BlurText as="h4" text={tool.name} className="text-lg font-semibold mb-2" />
+                        <p className="text-gray-300 text-sm mb-3">{tool.description}</p>
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-xs text-green-400 font-medium">{tool.price}</span>
+                        </div>
+                        <motion.a
+                          href={tool.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="block text-center px-3 py-2 rounded-lg gradient-blue text-white font-semibold hover-glow text-sm"
+                        >
+                          Tool besuchen
+                        </motion.a>
+                      </motion.div>
+                    ))}
                   </div>
-                </div>
-                <p className="text-gray-300 text-sm mb-3">
-                  {model.description}
-                </p>
-                {model.featured && (
-                  <span className="inline-block bg-blue-500/20 text-blue-300 text-xs px-2 py-1 rounded-full">
-                    ⭐ Featured
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          </FadeContent>
+        </div>
+      </section>
+
+      {/* Customer Reviews Section */}
+      <section ref={useScrollReveal("slide-up")} className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <BlurText as="h2" text="Was unsere Nutzer sagen" className="text-3xl md:text-4xl font-bold text-center mb-12" />
+          <FadeContent delay={400}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {customerReviews.map((review, index) => (
+                <motion.div
+                  key={review.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: index * 0.1 }}
+                  className="card p-6 hover-lift"
+                >
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full gradient-blue flex items-center justify-center text-white font-bold mr-3">
+                      {review.avatar}
+                    </div>
+                    <div>
+                      <BlurText as="h4" text={review.name} className="text-lg font-semibold" />
+                      <p className="text-sm text-gray-400">{review.company}</p>
+                    </div>
+                  </div>
+                  <div className="flex mb-3">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <span key={i} className="text-yellow-400">⭐</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-300 text-sm italic">"{review.review}"</p>
+                </motion.div>
+              ))}
+            </div>
+          </FadeContent>
         </div>
       </section>
 
@@ -479,6 +857,8 @@ export default function Home() {
             <Link href="/tools">Tools</Link>
             <Link href="/prompts">Prompts</Link>
             <Link href="/best-practices">Best Practices</Link>
+            <Link href="/privacy">Datenschutz</Link>
+            <Link href="/impressum">Impressum</Link>
           </div>
           <div className="text-gray-500 text-xs">
             © {new Date().getFullYear()} Digital Works. All rights reserved.

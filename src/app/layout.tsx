@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "../components/Navigation";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import CookieBanner from "../components/CookieBanner";
 
 export const metadata: Metadata = {
   title: "AI Stack - KI-Landscape 2024-2025",
@@ -47,18 +37,20 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="AI Stack" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <body className="antialiased"
       >
         <div className="mash-radiance-bg">
           <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 30% 40%, #5856D6 0%, #000 80%)', width: '600px', height: '600px', top: '10%', left: '5%', animationDelay: '0s'}} />
           <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 70% 60%, #FF2D55 0%, #000 80%)', width: '500px', height: '500px', top: '40%', left: '60%', animationDelay: '10s'}} />
           <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 50% 80%, #34C759 0%, #000 80%)', width: '400px', height: '400px', top: '70%', left: '30%', animationDelay: '20s'}} />
+          <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 80% 20%, #007AFF 0%, #000 80%)', width: '350px', height: '350px', top: '20%', left: '75%', animationDelay: '15s'}} />
+          <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 20% 70%, #FF9500 0%, #000 80%)', width: '450px', height: '450px', top: '60%', left: '10%', animationDelay: '25s'}} />
         </div>
         <Navigation />
         <main className="pt-20">
           {children}
         </main>
+        <CookieBanner />
       </body>
     </html>
   );

@@ -191,7 +191,6 @@ export default function ModelsPage() {
                       ))}
                     </div>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-gray-400">Preise: {model.prices}</span>
                       <span className="text-xs text-gray-500">Kategorie: {model.description.includes('Reasoning-First') ? 'Text' : model.description.includes('Large Action Model') ? 'Multimodal' : 'Text'}</span>
                     </div>
                     <div className="mb-2">
