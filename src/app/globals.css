@@ -26,7 +26,56 @@
   --font-sans: 'SF Pro Display', 'Geist', 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
-/* Mobile-specific optimizations */
+/* Ultra-smooth scroll animations and performance optimization */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  will-change: auto;
+}
+
+.animation-element {
+  will-change: transform, opacity, filter;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Respect reduced motion preferences for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Intersection Observer optimizations */
+.fade-in, .slide-up, .scale-in {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Passive event listeners optimization */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* GPU acceleration for animations */
+.hover-lift, .card, .glass-panel {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Image lazy loading optimization */
+img {
+  loading: lazy;
+  content-visibility: auto;
+}
 * {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;

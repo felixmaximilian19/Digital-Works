@@ -307,7 +307,7 @@ const aiToolsCategories = [
   }
 ];
 
-// Customer Reviews
+// Customer Reviews (10 total)
 const customerReviews = [
   {
     id: 1,
@@ -356,6 +356,38 @@ const customerReviews = [
     rating: 5,
     review: "Comprehensive und aktuell. Die Preisinformationen sind besonders wertvoll für Budgetplanung von Kunden.",
     avatar: "TB"
+  },
+  {
+    id: 7,
+    name: "Lisa W.",
+    company: "Design Studio",
+    rating: 5,
+    review: "Adobe Firefly und Ideogram haben unser Design-Workflow revolutioniert. Danke für die ehrlichen Tool-Reviews!",
+    avatar: "LW"
+  },
+  {
+    id: 8,
+    name: "Robert S.",
+    company: "Podcast Producer",
+    rating: 4,
+    review: "ElevenLabs und Descript waren Game-Changer für unsere Podcast-Produktion. Excellent tool recommendations.",
+    avatar: "RS"
+  },
+  {
+    id: 9,
+    name: "Maria G.",
+    company: "Data Analyst",
+    rating: 5,
+    review: "Tableau AI Suite Empfehlung war spot-on. Die Business Intelligence Tools Sektion ist fantastisch organisiert.",
+    avatar: "MG"
+  },
+  {
+    id: 10,
+    name: "Alex C.",
+    company: "Startup Founder",
+    rating: 5,
+    review: "Von Zapier bis Perplexity AI - alle Tools funktionieren wie beschrieben. Diese Plattform spart mir Stunden an Recherche.",
+    avatar: "AC"
   }
 ];
 

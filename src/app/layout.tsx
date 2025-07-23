@@ -4,8 +4,13 @@ import Navigation from "../components/Navigation";
 import CookieBanner from "../components/CookieBanner";
 
 export const metadata: Metadata = {
-  title: "AI Stack - KI-Landscape 2024-2025",
-  description: "Umfassende Übersicht der KI-Landschaft 2024-2025 mit Executive Summary, aktuellen Trends, KI-Modellen, Tools und Best Practices.",
+  title: "AI Stack - Komplette KI-Landschaft 2024-2025 | 40+ Tools & Modelle",
+  description: "Umfassende Übersicht der KI-Landschaft 2024-2025 mit über 40 führenden KI-Tools, Executive Summary, aktuellen Trends, KI-Modellen und Best Practices. Von GPT-4.5 bis Midjourney - alle Tools mit Preisen und direkten Links.",
+  keywords: "KI Tools, Künstliche Intelligenz, AI Stack, GPT-4.5, Midjourney, ChatGPT, AI Modelle 2024, OpenAI, Google Gemini, KI-Suchmaschinen",
+  authors: [{ name: "Felix Ehrenhuber" }],
+  creator: "Felix Ehrenhuber",
+  publisher: "Digital Works",
+  robots: "index, follow",
   icons: {
     icon: '/favicon.svg',
     apple: [
@@ -21,6 +26,32 @@ export const metadata: Metadata = {
   },
   themeColor: '#000000',
   manifest: '/manifest.json',
+  openGraph: {
+    type: 'website',
+    locale: 'de_DE',
+    url: 'https://ai-stack.vercel.app',
+    siteName: 'AI Stack - KI-Landschaft 2024-2025',
+    title: 'AI Stack - Komplette KI-Tools Datenbank 2024-2025',
+    description: 'Über 40 führende KI-Tools in 9 Kategorien. Von GPT-4.5 bis Midjourney - alle Tools mit Preisen, Features und direkten Links.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'AI Stack - KI-Tools Übersicht 2024-2025',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Stack - Komplette KI-Tools Datenbank 2024-2025',
+    description: 'Über 40 führende KI-Tools in 9 Kategorien. Von GPT-4.5 bis Midjourney - alle Tools mit Preisen und direkten Links.',
+    images: ['/og-image.jpg'],
+    creator: '@ai_stack_de',
+  },
+  alternates: {
+    canonical: 'https://ai-stack.vercel.app',
+  },
 };
 
 export default function RootLayout({
