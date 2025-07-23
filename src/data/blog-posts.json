@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "KI-Trends 2025: Was erwartet uns?",
+    "excerpt": "Die wichtigsten Entwicklungen im KI-Bereich für das kommende Jahr. Von agentischen Systemen bis hin zu multimodalen Modellen.",
+    "category": "Trends",
+    "author": "AI Stack Team",
+    "publishedAt": "2024-12-15",
+    "image": "/next.svg",
+    "tags": ["Trends", "2025", "KI-Entwicklung", "Zukunft"],
+    "content": "Die KI-Landschaft entwickelt sich rasant weiter. In diesem Artikel betrachten wir die wichtigsten Trends für 2025...",
+    "readTime": "8 min"
+  },
+  {
+    "id": 2,
+    "title": "Best Practices für KI-Teams",
+    "excerpt": "So gelingt die Einführung von KI in Unternehmen – bewährte Strategien und praktische Tipps aus der Praxis.",
+    "category": "Best Practices",
+    "author": "Dr. Sarah Mueller",
+    "publishedAt": "2024-11-28",
+    "image": "/file.svg",
+    "tags": ["Best Practices", "Teams", "Implementation", "Strategie"],
+    "content": "Die erfolgreiche Implementierung von KI in Unternehmen erfordert eine durchdachte Herangehensweise...",
+    "readTime": "12 min"
+  },
+  {
+    "id": 3,
+    "title": "Prompt Engineering Masterclass",
+    "excerpt": "Wie man mit den richtigen Prompts das Maximum aus KI-Modellen herausholt. Techniken und Beispiele für bessere Ergebnisse.",
+    "category": "Tutorial",
+    "author": "Marcus Schmidt",
+    "publishedAt": "2024-11-20",
+    "image": "/window.svg",
+    "tags": ["Prompt Engineering", "Tutorial", "Techniken", "Optimierung"],
+    "content": "Prompt Engineering ist eine Kunst und Wissenschaft zugleich. In diesem umfassenden Guide lernen Sie...",
+    "readTime": "15 min"
+  },
+  {
+    "id": 4,
+    "title": "Multimodale KI: Die Zukunft der Interaktion",
+    "excerpt": "Wie Text, Bild und Audio in einem System zusammenfließen und neue Möglichkeiten schaffen.",
+    "category": "Innovation",
+    "author": "Lisa Weber",
+    "publishedAt": "2024-11-10",
+    "image": "/globe.svg",
+    "tags": ["Multimodal", "Innovation", "Zukunft", "Technologie"],
+    "content": "Multimodale KI-Systeme revolutionieren die Art, wie wir mit Technologie interagieren...",
+    "readTime": "10 min"
+  },
+  {
+    "id": 5,
+    "title": "Ethische KI-Entwicklung: Ein Leitfaden",
+    "excerpt": "Verantwortungsvolle KI-Entwicklung beginnt mit den richtigen Prinzipien und Praktiken.",
+    "category": "Ethics",
+    "author": "Prof. Dr. Anna Richter",
+    "publishedAt": "2024-10-25",
+    "image": "/vercel.svg",
+    "tags": ["Ethik", "Verantwortung", "Entwicklung", "Governance"],
+    "content": "Ethische Überlegungen müssen von Anfang an in den KI-Entwicklungsprozess integriert werden...",
+    "readTime": "14 min"
+  }
+]
