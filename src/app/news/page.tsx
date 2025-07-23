@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import '../models/liquid-glass.css';
-import BlurText from '../components/BlurText';
+import BlurText from '../../components/BlurText';
 
 // News Data mit Live-Update-Simulation
 const initialNewsData = [

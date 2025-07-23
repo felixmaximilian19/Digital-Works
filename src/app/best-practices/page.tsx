@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import BlurText from '../components/BlurText';
+import BlurText from '../../components/BlurText';
 
 function useScrollReveal(className = 'fade-in', threshold = 0.15) {
   const ref = useRef<HTMLDivElement | null>(null);

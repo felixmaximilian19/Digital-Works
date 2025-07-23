@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Copy, Check, Star, BookOpen, Target, TrendingUp, Heart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import '../models/liquid-glass.css';
-import BlurText from '../components/BlurText';
+import BlurText from '../../components/BlurText';
 
 // Erweiterte KI-Prompts Data mit aktuellen Best Practices
 const promptsData = [
@@ -700,38 +700,45 @@ export default function PromptsPage() {
         )}
 
         {/* Apple-Style Filter-Tabs für Kategorien */}
-        <div className="flex flex-wrap gap-3 justify-center mb-8">
-          {['Alle', 'Content', 'Marketing', 'Programmierung', 'Design', 'KI-Strategie'].map(cat => (
-            <button
-              key={cat}
-              className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedCategory === cat ? 'bg-white/10 text-blue-400 ring-2 ring-blue-400/30 scale-105' : 'text-gray-200'}`}
-              onClick={e => { e.stopPropagation(); setSelectedCategory(cat); }}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-        {/* Apple-Style Filter-Tabs für Schwierigkeitsgrade */}
-        <div className="flex flex-wrap gap-3 justify-center mb-8">
-          {['Alle', 'Anfänger', 'Mittel', 'Fortgeschritten'].map(diff => (
-            <button
-              key={diff}
-              className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedDifficulty === diff ? 'bg-white/10 text-pink-400 ring-2 ring-pink-400/30 scale-105' : 'text-gray-200'}`}
-              onClick={e => { e.stopPropagation(); setSelectedDifficulty(diff); }}
-            >
-              {diff}
-            </button>
-          ))}
-        </div>
-          <div className="flex justify-center">
-            <input
-              type="text"
-              placeholder="Suche nach Prompts, Tags oder Beschreibung..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors w-full max-w-md"
-            />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mb-12"
+        >
+          {/* Apple-Style Filter-Tabs für Kategorien */}
+          <div className="flex flex-wrap gap-3 justify-center mb-8">
+            {['Alle', 'Content', 'Marketing', 'Programmierung', 'Design', 'KI-Strategie'].map(cat => (
+              <button
+                key={cat}
+                className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedCategory === cat ? 'bg-white/10 text-blue-400 ring-2 ring-blue-400/30 scale-105' : 'text-gray-200'}`}
+                onClick={e => { e.stopPropagation(); setSelectedCategory(cat); }}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
+          {/* Apple-Style Filter-Tabs für Schwierigkeitsgrade */}
+          <div className="flex flex-wrap gap-3 justify-center mb-8">
+            {['Alle', 'Anfänger', 'Mittel', 'Fortgeschritten'].map(diff => (
+              <button
+                key={diff}
+                className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedDifficulty === diff ? 'bg-white/10 text-pink-400 ring-2 ring-pink-400/30 scale-105' : 'text-gray-200'}`}
+                onClick={e => { e.stopPropagation(); setSelectedDifficulty(diff); }}
+              >
+                {diff}
+              </button>
+            ))}
+          </div>
+            <div className="flex justify-center">
+              <input
+                type="text"
+                placeholder="Suche nach Prompts, Tags oder Beschreibung..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-4 py-2 rounded-lg border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors w-full max-w-md"
+              />
+            </div>
         </motion.div>
 
         {/* All Prompts */}
@@ -783,7 +790,7 @@ export default function PromptsPage() {
                     </div>
                     <div className="mb-2">
                       <BlurText as="span" text="Prompt:" className="text-gray-400 text-xs" />
-                      <BlurText as="span" text={prompt.prompt.slice(0, 120)}{prompt.prompt.length > 120 ? '...' : ''} className="text-gray-200 text-sm ml-2 break-words" />
+                      <BlurText as="span" text={prompt.prompt.slice(0, 120) + (prompt.prompt.length > 120 ? '...' : '')} className="text-gray-200 text-sm ml-2 break-words" />
                     </div>
                     <div className="flex gap-2 mt-2 items-center">
                       <button
