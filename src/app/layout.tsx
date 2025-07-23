@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "../components/Navigation";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import CookieBanner from "../components/CookieBanner";
 
 export const metadata: Metadata = {
   title: "AI Stack - KI-Landscape 2024-2025",
@@ -48,7 +38,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="AI Stack" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className="antialiased font-sans"
       >
         <div className="mash-radiance-bg">
           <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 30% 40%, #5856D6 0%, #000 80%)', width: '600px', height: '600px', top: '10%', left: '5%', animationDelay: '0s'}} />
@@ -59,6 +49,7 @@ export default function RootLayout({
         <main className="pt-20">
           {children}
         </main>
+        <CookieBanner />
       </body>
     </html>
   );

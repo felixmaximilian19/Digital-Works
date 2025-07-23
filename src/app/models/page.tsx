@@ -13,27 +13,32 @@ const modelDetails = [
   {
     name: 'GPT-4.5 (OpenAI)',
     description: 'Vereinheitlichtes KI-System mit erweitertem Kontextfenster, nahtloser Integration wichtiger Funktionen. GPT-5 folgt Ende 2025.',
-    highlights: 'Erweitertes Kontextfenster, native Integration, Fortschritte aus spezialisierten Modellen.'
+    highlights: 'Erweitertes Kontextfenster, native Integration, Fortschritte aus spezialisierten Modellen.',
+    prices: '$20-200/Monat'
   },
   {
     name: 'Grok 3 (xAI)',
     description: 'Signifikanter Sprung in Denkfähigkeit, 1M Token Kontext, Super Grok Agents für proaktive Aufgaben.',
-    highlights: 'Mathematik, Wissenschaft, Code, Weltwissen, DeepSearch.'
+    highlights: 'Mathematik, Wissenschaft, Code, Weltwissen, DeepSearch.',
+    prices: '$40/Monat'
   },
   {
     name: 'Gemini 2.0/2.5 Pro (Google DeepMind)',
     description: 'Large Action Models, multimodale Suite, native Tool-Nutzung, Bild- und Audioausgabe.',
-    highlights: 'LAM, Gemini Live, Project Astra, Veo 3, Imagen 4.'
+    highlights: 'LAM, Gemini Live, Project Astra, Veo 3, Imagen 4.',
+    prices: '$19.99-249.99/Monat'
   },
   {
     name: 'DeepSeek R1 (DeepSeek AI)',
     description: 'Reasoning-First-Ansatz, komplexe Aufgaben in STEM, Open-Source, sehr kosteneffizient.',
-    highlights: 'Mehrstufige Konversation, Chains of Thought.'
+    highlights: 'Mehrstufige Konversation, Chains of Thought.',
+    prices: 'Open-Source/Kostenlos'
   },
   {
     name: 'Claude 3 Opus (Anthropic)',
     description: 'Multimodale Fähigkeiten, Bild-, Tabellen-, Graph- und Diagramm-Generierung.',
-    highlights: 'Websuche, Computer-Nutzung, kostenloser Plan.'
+    highlights: 'Websuche, Computer-Nutzung, kostenloser Plan.',
+    prices: '$17-20/Monat'
   }
 ];
 

@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
-import React, { useEffect, useRef, useState, useMemo, ElementType, HTMLAttributes } from 'react';
+import { useEffect, useRef, useState, useMemo, ElementType } from 'react';
 
-type AnimationStep = {
+interface AnimationStep {
   filter?: string;
   opacity?: number;
   y?: number;
   [key: string]: string | number | undefined;
-};
+}
 
-interface BlurTextProps extends HTMLAttributes<HTMLElement> {
+interface BlurTextProps {
   text?: string;
   delay?: number;
   className?: string;
@@ -22,27 +22,17 @@ interface BlurTextProps extends HTMLAttributes<HTMLElement> {
   onAnimationComplete?: () => void;
   stepDuration?: number;
   as?: ElementType;
+  [key: string]: unknown;
 }
 
-const buildKeyframes = (
-  from: AnimationStep,
-  steps: AnimationStep[]
-): Record<string, (string | number | null)[]> => {
+const buildKeyframes = (from: AnimationStep, steps: AnimationStep[]) => {
   const keys = new Set([
     ...Object.keys(from),
     ...steps.flatMap((s) => Object.keys(s)),
   ]);
-
-  const keyframes: Record<string, (string | number | null)[]> = {};
+  const keyframes: Record<string, (string | number)[]> = {};
   keys.forEach((k) => {
-    const fromValue = from[k];
-    keyframes[k] = [
-      fromValue === undefined ? null : fromValue,
-      ...steps.map((s) => {
-        const stepValue = s[k];
-        return stepValue === undefined ? null : stepValue;
-      }),
-    ];
+    keyframes[k] = [from[k], ...steps.map((s) => s[k])].filter((v): v is string | number => v !== undefined);
   });
   return keyframes;
 };
@@ -57,15 +47,15 @@ const BlurText: React.FC<BlurTextProps> = ({
   rootMargin = '0px',
   animationFrom,
   animationTo,
-  easing = (t: number) => t,
+  easing = (t) => t,
   onAnimationComplete,
   stepDuration = 0.35,
-  as: Tag = 'span',
+  as: Tag = 'p',
   ...rest
 }) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
   const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -73,14 +63,13 @@ const BlurText: React.FC<BlurTextProps> = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          if (ref.current) observer.unobserve(ref.current);
+          observer.unobserve(ref.current!);
         }
       },
       { threshold, rootMargin }
     );
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(ref.current);
     return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [threshold, rootMargin]);
 
   const defaultFrom = useMemo<AnimationStep>(
@@ -105,7 +94,6 @@ const BlurText: React.FC<BlurTextProps> = ({
 
   const fromSnapshot = animationFrom ?? defaultFrom;
   const toSnapshots = animationTo ?? defaultTo;
-
   const stepCount = toSnapshots.length + 1;
   const totalDuration = stepDuration * (stepCount - 1);
   const times = Array.from({ length: stepCount }, (_, i) =>
@@ -121,7 +109,6 @@ const BlurText: React.FC<BlurTextProps> = ({
     >
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
-
         const spanTransition = {
           duration: totalDuration,
           times,
@@ -133,8 +120,16 @@ const BlurText: React.FC<BlurTextProps> = ({
           <motion.span
             className="inline-block will-change-[transform,filter,opacity]"
             key={index}
-            initial={fromSnapshot}
-            animate={inView ? animateKeyframes : fromSnapshot}
+            initial={{
+              filter: fromSnapshot.filter || 'blur(10px)',
+              opacity: fromSnapshot.opacity || 0,
+              y: fromSnapshot.y || 0,
+            }}
+            animate={inView ? animateKeyframes : {
+              filter: fromSnapshot.filter || 'blur(10px)',
+              opacity: fromSnapshot.opacity || 0,
+              y: fromSnapshot.y || 0,
+            }}
             transition={spanTransition}
             onAnimationComplete={
               index === elements.length - 1 ? onAnimationComplete : undefined

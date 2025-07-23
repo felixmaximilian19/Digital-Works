@@ -6,6 +6,8 @@ import Logo from "../components/Logo";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import BlurText from '../components/BlurText';
+import FadeContent from '../components/FadeContent';
+import AnimatedMeshGradient from '../components/AnimatedMeshGradient';
 
 function useScrollReveal(className = "fade-in", threshold = 0.15) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -178,14 +180,89 @@ export default function Home() {
     },
   ];
 
+  // Customer Reviews
+  const customerReviews = [
+    {
+      name: "Dr. Sarah M.",
+      company: "TechStartup GmbH",
+      rating: 5,
+      text: "AI Stack hat unsere Produktivität um 300% gesteigert. Die Tool-Übersicht ist unschlagbar!",
+      role: "CTO"
+    },
+    {
+      name: "Marcus K.",
+      company: "Design Agency Berlin",
+      rating: 5,
+      text: "Endlich eine Plattform, die alle KI-Tools übersichtlich kategorisiert. Spart uns Stunden bei der Recherche.",
+      role: "Creative Director"
+    },
+    {
+      name: "Lisa P.",
+      company: "Marketing Solutions",
+      rating: 5,
+      text: "Die Preisübersichten und Bewertungen haben uns geholfen, das perfekte Tool für unser Team zu finden.",
+      role: "Marketing Manager"
+    },
+    {
+      name: "Prof. Dr. Michael R.",
+      company: "Universität München",
+      rating: 4,
+      text: "Excellente Ressource für Forschung und Lehre. Die Kategorisierung ist sehr durchdacht.",
+      role: "Professor für Informatik"
+    },
+    {
+      name: "Anna S.",
+      company: "E-Commerce Plus",
+      rating: 5,
+      text: "Von Textgenerierung bis Bildbearbeitung - hier finde ich alle Tools, die ich brauche. Top!",
+      role: "Content Manager"
+    },
+    {
+      name: "Thomas H.",
+      company: "DevCorp Solutions",
+      rating: 5,
+      text: "GitHub Copilot und andere Coding-Tools perfekt erklärt. Hat meine Entwicklungszeit halbiert.",
+      role: "Senior Developer"
+    },
+    {
+      name: "Julia W.",
+      company: "Consulting Group",
+      rating: 4,
+      text: "Sehr hilfreiche Insights zu KI-Trends 2024-2025. Nutze die Plattform täglich für Client-Beratung.",
+      role: "Senior Consultant"
+    },
+    {
+      name: "David L.",
+      company: "Media Productions",
+      rating: 5,
+      text: "Die Video-Tools Sektion ist Gold wert. Synthesia und Runway haben unser Business transformiert.",
+      role: "Video Producer"
+    },
+    {
+      name: "Elena R.",
+      company: "Data Analytics Inc.",
+      rating: 5,
+      text: "Power BI und Tableau AI perfekt erklärt. Die Business Intelligence Tools haben uns sehr geholfen.",
+      role: "Data Scientist"
+    },
+    {
+      name: "Alexander B.",
+      company: "Finance Tech",
+      rating: 4,
+      text: "Solide Übersicht über alle KI-Landschaft. Besonders die Preisvergleiche sind sehr nützlich.",
+      role: "Product Manager"
+    }
+  ];
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section (Finvolv Style) */}
+      {/* Hero Section (with Animated Mesh Background) */}
       <section
         ref={heroRef}
-        className="relative py-28 px-6 bg-gradient-to-br from-blue-900/60 to-black/90"
+        className="relative py-28 px-6 bg-gradient-to-br from-blue-900/60 to-black/90 overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <AnimatedMeshGradient className="z-0" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -193,27 +270,26 @@ export default function Home() {
             className="mb-10"
           >
             <Logo size="xl" showText={true} className="mx-auto mb-6" />
-            <BlurText as="h1" text="Revolutionize the Way You Manage Money" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
-            <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Secure. Smart. Seamless. Manage, invest, and grow your money with
-              confidence.
-            </p>
+            <BlurText text="AI Stack - Die KI-Landschaft 2024-2025" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
+            <FadeContent delay={500} className="text-lg md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Entdecke die umfassendste Übersicht der KI-Tools, Modelle und Trends für 2024-2025. Von führenden KI-Modellen bis zu spezialisierten Tools für jeden Anwendungsfall.
+            </FadeContent>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
-                href="#demo"
+                href="#tools"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-lg gradient-blue text-white font-semibold hover-glow shadow-lg text-lg"
               >
-                Watch Demo
+                KI-Tools entdecken
               </motion.a>
               <motion.a
-                href="#features"
+                href="#models"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/5 transition-colors text-lg"
               >
-                Learn More
+                KI-Modelle erkunden
               </motion.a>
             </div>
           </motion.div>
@@ -230,11 +306,9 @@ export default function Home() {
           <BlurText as="h2" text="Warum AI Stack?" className="text-3xl md:text-4xl font-bold text-center mb-14" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {aiStackFeatures.map((feature, idx) => (
-              <motion.div
+              <FadeContent
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: idx * 0.1 }}
+                delay={idx * 200}
                 className="card p-8 text-center hover-lift"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
@@ -242,7 +316,7 @@ export default function Home() {
                 <p className="text-gray-300 text-base">
                   {feature.description}
                 </p>
-              </motion.div>
+              </FadeContent>
             ))}
           </div>
         </div>
@@ -254,23 +328,24 @@ export default function Home() {
           <BlurText as="h2" text="Schnellzugriff" className="text-3xl md:text-4xl font-bold text-center mb-12" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {quickActions.map((action, index) => (
-              <motion.div
+              <FadeContent
                 key={action.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                delay={index * 150}
               >
-                <Link href={action.href} className="block">
-                  <div
-                    className={`card p-6 text-center ${action.gradient} hover-lift`}
-                  >
-                    <div className="text-3xl mb-3">{action.icon}</div>
-                    <BlurText as="h3" text={action.name} className="text-white font-semibold" />
-                  </div>
-                </Link>
-              </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link href={action.href} className="block">
+                    <div
+                      className={`card p-6 text-center ${action.gradient} hover-lift`}
+                    >
+                      <div className="text-3xl mb-3">{action.icon}</div>
+                      <BlurText as="h3" text={action.name} className="text-white font-semibold" />
+                    </div>
+                  </Link>
+                </motion.div>
+              </FadeContent>
             ))}
           </div>
         </div>
@@ -430,6 +505,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Customer Reviews Section */}
+      <section
+        ref={useScrollReveal("fade-in")}
+        className="py-20 px-6 bg-transparent"
+      >
+        <div className="max-w-7xl mx-auto">
+          <BlurText as="h2" text="Was unsere Nutzer sagen" className="text-3xl md:text-4xl font-bold text-center mb-14" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {customerReviews.slice(0, 6).map((review, idx) => (
+              <FadeContent
+                key={review.name}
+                delay={idx * 150}
+                className="card p-6 hover-lift flex flex-col"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-3">
+                    {review.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-white">{review.name}</div>
+                    <div className="text-sm text-gray-400">{review.role}</div>
+                    <div className="text-xs text-gray-500">{review.company}</div>
+                  </div>
+                </div>
+                <div className="flex mb-3">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">⭐</span>
+                  ))}
+                </div>
+                <p className="text-gray-300 text-sm flex-1 leading-relaxed">
+                  &ldquo;{review.text}&rdquo;
+                </p>
+              </FadeContent>
+            ))}
+          </div>
+          
+          <FadeContent delay={1000} className="text-center mt-8">
+            <p className="text-gray-400">
+              Über <span className="text-blue-400 font-semibold">10.000+</span> zufriedene Nutzer vertrauen AI Stack
+            </p>
+          </FadeContent>
+        </div>
+      </section>
+
       {/* Blog Preview Section (AI Stack) */}
       <section
         ref={useScrollReveal("fade-in")}
@@ -471,17 +590,37 @@ export default function Home() {
 
       {/* Footer Section */}
       <footer className="py-12 px-6 bg-gradient-to-t from-blue-900/60 to-black/90 mt-12">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <Logo size="md" showText={true} className="mb-4 md:mb-0" />
-          <div className="flex flex-wrap gap-6 text-gray-400 text-sm">
-            <Link href="/news">News</Link>
-            <Link href="/models">Modelle</Link>
-            <Link href="/tools">Tools</Link>
-            <Link href="/prompts">Prompts</Link>
-            <Link href="/best-practices">Best Practices</Link>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+            <Logo size="md" showText={true} className="mb-4 md:mb-0" />
+            <div className="flex flex-wrap gap-6 text-gray-400 text-sm">
+              <Link href="/news" className="hover:text-white transition-colors">News</Link>
+              <Link href="/models" className="hover:text-white transition-colors">Modelle</Link>
+              <Link href="/tools" className="hover:text-white transition-colors">Tools</Link>
+              <Link href="/prompts" className="hover:text-white transition-colors">Prompts</Link>
+              <Link href="/best-practices" className="hover:text-white transition-colors">Best Practices</Link>
+            </div>
           </div>
-          <div className="text-gray-500 text-xs">
-            © {new Date().getFullYear()} Digital Works. All rights reserved.
+          
+          <div className="border-t border-white/10 pt-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="text-gray-500 text-xs text-center md:text-left">
+                © {new Date().getFullYear()} Digital Works. Alle Rechte vorbehalten.
+              </div>
+              <div className="flex flex-wrap gap-4 text-gray-400 text-xs">
+                <Link href="/impressum" className="hover:text-white transition-colors">Impressum</Link>
+                <Link href="/datenschutz" className="hover:text-white transition-colors">Datenschutz</Link>
+                <button 
+                  onClick={() => {
+                    localStorage.removeItem('cookieConsent');
+                    window.location.reload();
+                  }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
+                  Cookie-Einstellungen
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
