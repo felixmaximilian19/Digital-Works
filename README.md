@@ -1,99 +1,62 @@
-# AI Stack - KI-Landscape 2024-2025
+# AI Stack - KI-Tool Plattform
 
-## 🌟 **Moderne KI-Plattform für alle Geräte**
+![AI Stack](https://img.shields.io/badge/AI%20Stack-Next.js%2015-blue?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-Eine umfassende, responsive Web-App mit Apple-inspiriertem Design, die die komplette KI-Landschaft 2024-2025 abdeckt.
+Eine moderne, Apple-inspirierte Plattform für KI-Tools, Modelle und Best Practices mit Next.js 15, TypeScript und Framer Motion.
 
-## ✨ **Features**
+## 🚀 Features
 
-### 📊 **Dashboard**
-- Executive Summary der KI-Landschaft
-- Aktuelle Trends und Entwicklungen
-- Top KI-Modelle im Überblick
-- Quick Access zu allen Bereichen
+### ✨ Design & UX
+- **Apple-inspirierte UI/UX** mit Liquid Glass und Glassmorphism
+- **DarkVeil Shader** im Hero-Bereich mit animierten Partikeln
+- **Mesh Gradients** als subtile Hintergrund-Animationen
+- **BlurText Animationen** für alle Überschriften
+- **FadeContent Komponenten** mit GPU-beschleunigten Animationen
+- **Responsive Design** für alle Devices (Mobile, Tablet, Desktop, 4K)
 
-### 📰 **KI-News**
-- Live Updates und Breaking News
-- Kategorisierte Nachrichten
-- Suchfunktion und Filter
-- Copy-to-Clipboard für wichtige News
+### 🛠️ Funktionalität
+- **KI-Tools Sammlung** mit Filter und Suche
+- **KI-Modelle Übersicht** der neuesten Entwicklungen
+- **Prompts Bibliothek** für verschiedene Anwendungsfälle
+- **Best Practices Guides** für KI-Integration
+- **News & Updates** aus der KI-Welt
+- **Linksseitige Navigation** mit Gradient-Border Buttons
 
-### 🧠 **KI-Modelle**
-- Umfassende Übersicht aller Modelle
-- Detaillierte Informationen und Vergleich
-- Filter nach Kategorien und Typen
-- Responsive Model-Cards
+### 🔒 DSGVO & Compliance
+- **Cookie-Consent Banner** mit granularen Einstellungen
+- **DSGVO-konforme Datenschutzerklärung**
+- **Impressum** nach deutschem Recht
+- **Opt-in Analytics** und Marketing-Cookies
 
-### 🛠️ **KI-Tools**
-- **8+ detaillierte Tool-Profile**
-- **Tool-Detailseiten** mit Vorteilen, Nachteilen, Alternativen
-- Kategorisierte Tools (Text, Bild, Video, Audio, Code)
-- Preise, Features und Anwendungsfälle
-
-### 💡 **KI-Prompts**
-- **10+ professionelle Prompts** in verschiedenen Kategorien
-- Copy-to-Clipboard Funktionalität
-- Schwierigkeitsgrade und Tags
-- Best Practices für Prompt Engineering
-
-### 📚 **Best Practices**
-- Umfassende Guidelines
-- Checklisten und Ressourcen
-- Tipps für optimale KI-Nutzung
-
-## 🎨 **Design & UX**
-
-### **Apple-inspiriertes Design**
-- Glassmorphism-Effekte
-- Sanfte Gradienten und Schatten
-- Micro-Animationen mit Framer Motion
-- Smooth Transitions und Hover-Effekte
-
-### **Responsive Design**
-- **Mobile-First** Ansatz
-- Optimiert für alle Bildschirmgrößen
-- Touch-optimierte Buttons (min. 44px)
-- Mobile-spezifische Animationen
-
-## 📱 **Mobile Optimierungen**
-
-### **iOS Safari Kompatibilität**
-- iOS-spezifische CSS-Fixes
-- Backdrop-Filter Optimierung
-- Touch-Event Handling
-- Safari Developer Tools getestet
-
-### **Android Chrome Optimierung**
-- Hardware Acceleration
-- Touch-Target Optimierung
-- Performance-Optimierungen
-- Chrome DevTools getestet
-
-### **PWA Features**
-- Web App Manifest
-- Apple Touch Icons
-- Responsive Icons
-- App-like Experience
-
-## 🚀 **Technologie-Stack**
-
+### ⚡ Performance
 - **Next.js 15** mit App Router
-- **TypeScript** für Type Safety
-- **TailwindCSS 4** für Styling
-- **Framer Motion** für Animationen
-- **Lucide React** für Icons
+- **GPU-beschleunigte Animationen** mit `will-change` Optimierungen
+- **Lazy Loading** für Bilder und Komponenten
+- **Optimierte Scroll-Animationen** mit IntersectionObserver
+- **Mobile-optimiert** mit Touch-Gesten und reduzierten Animationen
 
-## 🛠️ **Installation & Setup**
+## 🛠️ Tech Stack
 
-### **Voraussetzungen**
+- **Framework**: Next.js 15.4.2
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion 12.23.6
+- **Icons**: Lucide React 0.525.0
+- **Performance**: React 19.1.0
+
+## 📦 Installation
+
+### Voraussetzungen
 - Node.js 18+ 
 - npm oder yarn
 
-### **Installation**
+### Setup
 ```bash
 # Repository klonen
-git clone <repository-url>
-cd digitalworks
+git clone [your-repo-url] ai-stack
+cd ai-stack
 
 # Dependencies installieren
 npm install
@@ -102,201 +65,289 @@ npm install
 npm run dev
 ```
 
-### **Build & Deployment**
+Die App ist unter `http://localhost:3000` verfügbar.
+
+## 🚀 Deployment
+
+### Vercel (Empfohlen)
 ```bash
-# Production Build
-npm run build
+# Vercel CLI installieren
+npm i -g vercel
 
-# Production Server starten
-npm start
+# Deployment
+vercel
 
-# Linting
-npm run lint
+# Production deployment
+vercel --prod
 ```
 
-## 🌐 **Browser-Kompatibilität**
+### Netlify
+```bash
+# Build erstellen
+npm run build
 
-### **Vollständig unterstützt:**
-- ✅ **Chrome/Chromium** (alle Versionen)
-- ✅ **Firefox** (alle Versionen)
-- ✅ **Safari** (iOS & macOS)
-- ✅ **Edge** (alle Versionen)
-- ✅ **Mobile Browser** (Chrome Mobile, Safari Mobile)
+# Netlify CLI
+npm i -g netlify-cli
+netlify deploy --prod --dir=.next
+```
 
-### **Mobile Geräte:**
-- ✅ **iPhone** (alle Modelle, iOS 12+)
-- ✅ **iPad** (alle Modelle, iOS 12+)
-- ✅ **Android** (alle Geräte, Android 8+)
-- ✅ **Tablets** (iPad, Android Tablets)
+### Docker
+```dockerfile
+FROM node:18-alpine
 
-## 📊 **Performance**
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
 
-### **Core Web Vitals**
+COPY . .
+RUN npm run build
+
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+## 🎨 Komponenten
+
+### Core Komponenten
+- **BlurText**: Animierte Text-Einblendungen mit GPU-Acceleration
+- **FadeContent**: Scroll-basierte Reveal-Animationen
+- **MeshGradientBackground**: Canvas-basierte Mesh-Gradients
+- **CookieConsent**: DSGVO-konforme Cookie-Verwaltung
+- **Navigation**: Responsive Sidebar mit Apple-Style Design
+
+### Animation System
+```typescript
+// Beispiel BlurText Usage
+<BlurText 
+  as="h1" 
+  text="AI Stack" 
+  className="text-5xl font-bold"
+  animateBy="words"
+  direction="top" 
+/>
+
+// Beispiel FadeContent Usage  
+<FadeContent 
+  direction="up" 
+  delay={0.2}
+  duration={0.6}
+>
+  <div>Content...</div>
+</FadeContent>
+```
+
+## 🎯 Konfiguration
+
+### Environment Variablen
+```env
+# .env.local
+NEXT_PUBLIC_APP_URL=https://your-domain.com
+NEXT_PUBLIC_GA_ID=your-google-analytics-id
+```
+
+### Tailwind CSS Konfiguration
+Die App nutzt CSS Custom Properties für konsistente Theming:
+
+```css
+:root {
+  --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --glass-bg: rgba(255,255,255,0.08);
+  --font-sans: 'Inter', 'SF Pro Display', sans-serif;
+}
+```
+
+## 📱 Browser Support
+
+- **Chrome** 90+
+- **Firefox** 88+  
+- **Safari** 14+
+- **Edge** 90+
+
+### Mobile Optimierungen
+- Touch-optimierte Interaktionen
+- Reduzierte Animationen auf schwächeren Devices
+- iOS Safari backdrop-filter Support
+- Android Chrome Hardware-Beschleunigung
+
+## 📊 Performance Metriken
+
+### Lighthouse Scores (Ziel)
+- **Performance**: 95+
+- **Accessibility**: 95+
+- **Best Practices**: 100
+- **SEO**: 100
+
+### Core Web Vitals
 - **LCP**: < 2.5s
 - **FID**: < 100ms  
 - **CLS**: < 0.1
 
-### **Optimierungen**
-- Image Optimization
-- Code Splitting
-- Lazy Loading
-- Bundle Analysis
-- CSS/JS Minification
+## 🔧 Entwicklung
 
-## 🔧 **Konfiguration**
-
-### **Environment Variables**
+### Scripts
 ```bash
-# .env.local
-NEXT_PUBLIC_APP_URL=https://your-domain.com
-NEXT_PUBLIC_APP_NAME=DigitalWorks
+npm run dev      # Development Server
+npm run build    # Production Build
+npm run start    # Production Server
+npm run lint     # ESLint Check
+npm run export   # Static Export
 ```
 
-### **Next.js Config**
-- Optimierte Webpack-Konfiguration
-- Security Headers
-- Image Optimization
-- Performance Optimierungen
+### Code Style
+- **ESLint** mit Next.js Config
+- **TypeScript** Strict Mode
+- **Prettier** für Code Formatting
 
-## 📁 **Projekt-Struktur**
-
-```
-digitalworks/
-├── src/
-│   ├── app/                 # Next.js App Router
-│   │   ├── layout.tsx      # Root Layout
-│   │   ├── page.tsx        # Dashboard
-│   │   ├── news/           # KI-News
-│   │   ├── models/         # KI-Modelle
-│   │   ├── tools/          # KI-Tools
-│   │   │   └── [id]/       # Tool-Detailseiten
-│   │   ├── prompts/        # KI-Prompts
-│   │   └── best-practices/ # Best Practices
-│   ├── components/         # React Components
-│   │   ├── Navigation.tsx  # Navigation Bar
-│   │   └── Logo.tsx        # Logo Component
-│   └── app/globals.css     # Global Styles
-├── public/                 # Static Assets
-│   ├── manifest.json       # Web App Manifest
-│   ├── robots.txt          # SEO
-│   └── icons/              # App Icons
-├── next.config.js          # Next.js Config
-├── package.json            # Dependencies
-└── README.md               # Documentation
-```
-
-## 🚀 **Deployment**
-
-### **Vercel (Empfohlen)**
+### Git Workflow
 ```bash
-npm i -g vercel
+# Feature Branch erstellen
+git checkout -b feature/new-feature
+
+# Changes committen
+git add .
+git commit -m "feat: add new feature"
+
+# Push und PR erstellen
+git push origin feature/new-feature
+```
+
+## 📄 Content Management
+
+### KI-Tools hinzufügen
+```typescript
+// src/data/tools.ts
+export const aiTools = [
+  {
+    id: 1,
+    name: "Tool Name",
+    description: "Tool Description",
+    category: "Category",
+    rating: 4.8,
+    pricing: "Freemium",
+    url: "https://tool-url.com",
+    icon: IconComponent,
+    gradient: "gradient-blue",
+    tags: ["tag1", "tag2"],
+    featured: true
+  }
+];
+```
+
+### News-Artikel hinzufügen
+```typescript
+// src/data/news.ts
+export const newsArticles = [
+  {
+    id: 1,
+    title: "Article Title",
+    excerpt: "Article excerpt...",
+    category: "Category",
+    date: "2024-12-15",
+    readTime: "5 min",
+    tags: ["AI", "News"],
+    featured: true
+  }
+];
+```
+
+## 🛡️ Sicherheit
+
+### DSGVO Compliance
+- Cookie-Consent vor Tracking
+- Anonymisierte Analytics
+- Datenminimierung
+- Nutzerrechte (Auskunft, Löschung, etc.)
+
+### Security Headers
+```javascript
+// next.config.js
+const securityHeaders = [
+  {
+    key: 'X-Frame-Options',
+    value: 'DENY'
+  },
+  {
+    key: 'X-Content-Type-Options', 
+    value: 'nosniff'
+  },
+  // weitere Headers...
+];
+```
+
+## 🧪 Testing
+
+### Unit Tests
+```bash
+# Jest Setup (optional)
+npm install --save-dev jest @testing-library/react
+npm run test
+```
+
+### E2E Tests  
+```bash
+# Playwright Setup (optional)
+npm install --save-dev @playwright/test
+npx playwright test
+```
+
+## 📱 PWA Support (Optional)
+
+### Service Worker
+```javascript
+// public/sw.js
+self.addEventListener('install', event => {
+  // Cache resources
+});
+```
+
+### Manifest
+```json
+// public/manifest.json
+{
+  "name": "AI Stack",
+  "short_name": "AI Stack", 
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": "/"
+}
+```
+
+## 🤝 Contributing
+
+1. Fork das Repository
+2. Feature Branch erstellen (`git checkout -b feature/AmazingFeature`)
+3. Changes committen (`git commit -m 'Add some AmazingFeature'`)
+4. Branch pushen (`git push origin feature/AmazingFeature`)
+5. Pull Request öffnen
+
+## 📞 Kontakt & Support
+
+**Felix Ehrenhuber**
+- 📧 Email: felix.ehrenhuber@icloud.com
+- 📱 Phone: 0151 21348230
+- 📍 Address: Höhenweg 28, 82541 Ammerland-Münsing
+
+## 📄 Lizenz
+
+Copyright © 2024 Felix Ehrenhuber. Alle Rechte vorbehalten.
+
+---
+
+## 🚀 Quick Start Befehle
+
+```bash
+# 1. Installation
+git clone [repo] && cd ai-stack && npm install
+
+# 2. Development
+npm run dev
+
+# 3. Production Build  
+npm run build && npm start
+
+# 4. Deployment (Vercel)
 vercel --prod
 ```
 
-### **Netlify**
-```bash
-npm run build
-# Upload .next folder to Netlify
-```
-
-### **Docker**
-```bash
-docker build -t digitalworks .
-docker run -p 3000:3000 digitalworks
-```
-
-## 🔒 **Security**
-
-### **Security Headers**
-- X-Frame-Options: DENY
-- X-Content-Type-Options: nosniff
-- Referrer-Policy: origin-when-cross-origin
-- Permissions-Policy: camera=(), microphone=(), geolocation=()
-
-### **HTTPS Required**
-- iOS Safari PWA Features
-- Service Worker
-- Geolocation API
-- Camera/Microphone Access
-
-## 📈 **Monitoring & Analytics**
-
-### **Performance Monitoring**
-- Google PageSpeed Insights
-- WebPageTest
-- Lighthouse CI
-
-### **Error Tracking**
-- Sentry Integration
-- LogRocket
-- Bugsnag
-
-## 🧪 **Testing**
-
-### **Cross-Browser Testing**
-- BrowserStack
-- Sauce Labs
-- LambdaTest
-
-### **Mobile Testing**
-- iOS Simulator
-- Android Emulator
-- Real Device Testing
-
-## 🚨 **Troubleshooting**
-
-### **Häufige Probleme**
-
-1. **Mobile Safari zeigt weißen Bildschirm**
-   - HTTPS prüfen
-   - Service Worker Cache löschen
-   - Safari Developer Tools verwenden
-
-2. **Touch-Events funktionieren nicht**
-   - Touch-Targets prüfen (min. 44px)
-   - CSS touch-action prüfen
-   - Event Listener prüfen
-
-3. **Performance-Probleme**
-   - Bundle Size analysieren
-   - Lazy Loading aktivieren
-   - CDN verwenden
-
-## 📞 **Support**
-
-Bei Problemen:
-1. Browser-Konsole prüfen
-2. Network Tab analysieren
-3. Mobile DevTools verwenden
-4. Cross-Browser Testing durchführen
-
-## 🤝 **Contributing**
-
-1. Fork das Repository
-2. Erstelle einen Feature Branch
-3. Committe deine Änderungen
-4. Push zum Branch
-5. Erstelle einen Pull Request
-
-## 📄 **Lizenz**
-
-MIT License - siehe [LICENSE](LICENSE) Datei für Details.
-
-## 🙏 **Credits**
-
-- **Design**: Apple-inspiriertes UI/UX
-- **Icons**: Lucide React
-- **Animationen**: Framer Motion
-- **Styling**: TailwindCSS
-
----
-
-## 🎉 **Fazit**
-
-**AI Stack** ist eine moderne, vollständig responsive KI-Plattform, die auf allen Geräten und Browsern perfekt funktioniert. Mit Apple-inspiriertem Design, umfassenden Features und optimaler Performance bietet sie die beste Erfahrung für alle Nutzer.
-
-**Die App ist bereit für den produktiven Einsatz! 🚀**
-
----
-
-**Entwickelt mit ❤️ für die KI-Community**
+**Happy Coding! 🚀**

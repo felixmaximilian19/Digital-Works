@@ -1,363 +1,325 @@
-'use client';
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import '../models/liquid-glass.css';
+import { motion } from "framer-motion";
+import Link from "next/link";
 import BlurText from '../../components/BlurText';
+import FadeContent from '../../components/FadeContent';
+import { 
+  Newspaper, 
+  Calendar, 
+  Clock, 
+  ArrowRight,
+  TrendingUp,
+  Bot,
+  Sparkles,
+  Zap
+} from "lucide-react";
 
-// News Data mit Live-Update-Simulation
-const initialNewsData = [
+// Sample News Data
+const newsArticles = [
   {
     id: 1,
-    title: "Agentische KI erreicht 13,81 Milliarden US-Dollar Marktvolumen",
-    category: "Marktanalyse",
-    summary: "Der Markt für agentische KI-Tools wird voraussichtlich im Jahr 2025 ein Volumen von 13,81 Milliarden US-Dollar erreichen.",
-    content: "Führende Technologieunternehmen stehen an der Spitze der Entwicklung agentischer KI. Microsoft bietet Frameworks wie AutoGen für den Aufbau konversationsfähiger Multi-Agenten-Systeme an, die Code in sicheren Umgebungen generieren, ausführen und debuggen können.",
-    date: "2024-12-20",
-    readTime: "3 min",
+    title: "GPT-4.5 Revolution: OpenAI kündigt größtes Update seit Jahren an",
+    excerpt: "Das neue Modell soll 10x effizienter werden und erweiterte Reasoning-Fähigkeiten bieten. Beta-Zugang startet noch diesen Monat.",
+    category: "Modelle",
+    date: "2024-12-15",
+    readTime: "5 min",
+    image: "/globe.svg",
     featured: true,
-    gradient: "gradient-blue"
+    tags: ["OpenAI", "GPT-4.5", "Update"]
   },
   {
     id: 2,
-    title: "OpenAI veröffentlicht GPT-4.5 mit Unified AI System",
-    category: "Modell-Updates",
-    summary: "OpenAI führt ein Unified AI System ein, das die Stärken der GPT-Serie mit erweiterten Denkfähigkeiten integriert.",
-    content: "GPT-4.5 wird ein erweitertes Kontextfenster bieten, das es ermöglicht, eine größere Menge an Informationen für komplexe Aufgaben und längere Interaktionen zu verarbeiten und zu behalten, zusammen mit einer nativen Integration wichtiger Funktionalitäten.",
-    date: "2024-12-19",
-    readTime: "4 min",
+    title: "Claude 3.5 Sonnet erhält massive Coding-Verbesserungen",
+    excerpt: "Anthropic verbessert die Programmier-Fähigkeiten ihres Flaggschiff-Modells erheblich. Neue Benchmarks zeigen beeindruckende Ergebnisse.",
+    category: "Updates",
+    date: "2024-12-14",
+    readTime: "3 min",
+    image: "/file.svg",
     featured: false,
-    gradient: "gradient-purple"
+    tags: ["Anthropic", "Claude", "Coding"]
   },
   {
     id: 3,
-    title: "Grok 3 von xAI demonstriert überlegene Denkfähigkeiten",
-    category: "Forschung",
-    summary: "Grok 3 zeigt einen signifikanten Sprung in überlegener Denkfähigkeit mit 1 Million Tokens Kontextfenster.",
-    content: "xAI beansprucht erweiterte Fähigkeiten in einer Vielzahl von Domänen, einschließlich Mathematik, Wissenschaft, Codierung und Weltwissen. Ein Schlüsselmerkmal ist die Einführung von Super Grok Agents.",
-    date: "2024-12-18",
-    readTime: "5 min",
-    featured: false,
-    gradient: "gradient-orange"
+    title: "KI-Tools für Designer: Die 10 besten Alternativen zu Midjourney",
+    excerpt: "Von DALL-E 3 bis zu Stable Diffusion - wir stellen die besten Bildgenerierungs-Tools vor und vergleichen ihre Stärken.",
+    category: "Tools",
+    date: "2024-12-13",
+    readTime: "8 min",
+    image: "/window.svg",
+    featured: true,
+    tags: ["Design", "Bildgenerierung", "Tools"]
   },
   {
     id: 4,
-    title: "Google DeepMind stellt Gemini 2.5 Pro vor",
-    category: "Modell-Updates",
-    summary: "Gemini 2.5 Pro zeigt signifikante Verbesserungen im multimodalen Verständnis und Large Action Models.",
-    content: "Gemini 2.5 Pro führt das Feld in der Gesamtleistung mit 86,4% an, während es auch bei High School Math (AIME 2025) mit 92% sehr gut abschneidet. Es treibt Googles KI-Modus in der Suche, Gemini Live, Project Astra, Veo 3 und Imagen 4 an.",
-    date: "2024-12-17",
-    readTime: "4 min",
+    title: "Neue EU-KI-Verordnung: Was Unternehmen jetzt wissen müssen",
+    excerpt: "Die finalen Bestimmungen der EU-KI-Verordnung sind veröffentlicht. Wir erklären die wichtigsten Änderungen für Businesses.",
+    category: "Regulierung",
+    date: "2024-12-12",
+    readTime: "6 min",
+    image: "/globe.svg",
     featured: false,
-    gradient: "gradient-pink"
+    tags: ["EU", "Regulierung", "Business"]
   },
   {
     id: 5,
-    title: "DeepSeek R1 revolutioniert Kosteneffizienz",
-    category: "Marktanalyse",
-    summary: "DeepSeek R1 ist bis zu 30-mal günstiger als vergleichbare Modelle und Open-Source verfügbar.",
-    content: "Das Modell basiert auf einem Reasoning-First-Ansatz und unterstützt mehrstufige Konversationen und generiert mehrere Gedankenketten. Die Preisgestaltung basiert auf der Token-Nutzung mit attraktiven Preisen.",
-    date: "2024-12-16",
-    readTime: "3 min",
+    title: "Prompt Engineering 2025: Die wichtigsten Techniken im Überblick",
+    excerpt: "Von Chain-of-Thought bis zu Tree-of-Thoughts - die neuesten Methoden für bessere KI-Interaktionen im Detail erklärt.",
+    category: "Best Practices",
+    date: "2024-12-11",
+    readTime: "7 min",
+    image: "/file.svg",
     featured: false,
-    gradient: "gradient-cyan"
+    tags: ["Prompt Engineering", "Techniken", "Guide"]
   },
   {
     id: 6,
-    title: "KI-Investitionen erreichen 109,1 Milliarden US-Dollar",
-    category: "Finanzen",
-    summary: "Private KI-Investitionen in den USA erreichten 2024 109,1 Milliarden US-Dollar.",
-    content: "Insbesondere generative KI hat eine starke Dynamik gezeigt und 2023 weltweit 33,9 Milliarden US-Dollar an privaten Investitionen angezogen, was einem Anstieg von 18,7% gegenüber dem Vorjahr entspricht.",
-    date: "2024-12-15",
-    readTime: "2 min",
-    featured: false,
-    gradient: "gradient-blue"
+    title: "Google Gemini 2.0: Multimodale KI erreicht neuen Meilenstein",
+    excerpt: "Googles neueste KI-Generation kann nahtlos zwischen Text, Bild, Audio und Video wechseln. Die Benchmark-Ergebnisse sind beeindruckend.",
+    category: "Modelle",
+    date: "2024-12-10",
+    readTime: "4 min",
+    image: "/window.svg",
+    featured: true,
+    tags: ["Google", "Gemini", "Multimodal"]
   }
 ];
 
-function useScrollReveal(className = 'fade-in', threshold = 0.15) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          (node as HTMLElement).classList.add(className);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [className, threshold]);
-  return ref;
-}
+const categories = [
+  { name: "Alle", color: "text-blue-400", count: newsArticles.length },
+  { name: "Modelle", color: "text-purple-400", count: newsArticles.filter(a => a.category === "Modelle").length },
+  { name: "Tools", color: "text-orange-400", count: newsArticles.filter(a => a.category === "Tools").length },
+  { name: "Updates", color: "text-green-400", count: newsArticles.filter(a => a.category === "Updates").length },
+  { name: "Best Practices", color: "text-pink-400", count: newsArticles.filter(a => a.category === "Best Practices").length },
+  { name: "Regulierung", color: "text-cyan-400", count: newsArticles.filter(a => a.category === "Regulierung").length }
+];
 
-export default function NewsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("Alle");
-  const [newsData, setNewsData] = useState(initialNewsData);
-  const [isUpdating, setIsUpdating] = useState(false);
-  const [copiedId, setCopiedId] = useState<number | null>(null);
-
-  const filteredNews = selectedCategory === "Alle" 
-    ? newsData 
-    : newsData.filter(news => news.category === selectedCategory);
-
-  const handleLiveUpdate = async () => {
-    setIsUpdating(true);
-    
-    // Simuliere API-Call mit Animation
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Füge neue News hinzu (Simulation)
-    const newNews = {
-      id: Date.now(),
-      title: "Neue KI-Entwicklung: Multimodale Fähigkeiten erreichen neue Höhen",
-      category: "Forschung",
-      summary: "Die neuesten Modelle zeigen erweiterte Kontextfenster und die Fähigkeit, Informationen über Text, Bild und Audio hinweg zu verarbeiten.",
-      content: "Diese Entwicklung bringt KI-Systeme näher an eine allgemeinere Intelligenz heran, die in der Lage ist, komplexe, reale Probleme zu lösen, die ein nuanciertes Verständnis vielfältiger Informationen erfordern.",
-      date: new Date().toISOString().split('T')[0],
-      readTime: "3 min",
-      featured: true,
-      gradient: "gradient-purple"
-    };
-    
-    setNewsData([newNews, ...newsData]);
-    setIsUpdating(false);
-  };
-
-  const handleCopy = (text: string, id: number) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
-
-  const headerRef = useScrollReveal('fade-in');
-  const liveUpdateRef = useScrollReveal('slide-up');
-  const newsCardsRef = useScrollReveal('slide-up');
-
-  // Live-News-API/Feed (Platzhalter für echte Integration)
-  const liveNews = [
-    {
-      id: 'live1',
-      title: 'OpenAI veröffentlicht GPT-5 Beta',
-      summary: 'OpenAI hat die Beta-Version von GPT-5 mit noch größerem Kontextfenster und neuen Features vorgestellt.',
-      url: 'https://openai.com/blog/gpt-5-beta',
-      image: '/globe.svg',
-      date: '2025-06-20',
-      source: 'OpenAI Blog'
-    },
-    {
-      id: 'live2',
-      title: 'Google Gemini 2.5 Pro jetzt für Unternehmen verfügbar',
-      summary: 'Google DeepMind launcht Gemini 2.5 Pro mit nativer Tool-Nutzung und Multimodalität für Enterprise-Kunden.',
-      url: 'https://ai.google.com/news/gemini-2-5-pro',
-      image: '/window.svg',
-      date: '2025-06-19',
-      source: 'Google AI News'
-    },
-    {
-      id: 'live3',
-      title: 'Anthropic Claude 3 Opus schlägt Benchmarks',
-      summary: 'Claude 3 Opus von Anthropic erzielt neue Bestwerte bei Multimodalität und logischem Denken.',
-      url: 'https://www.anthropic.com/news/claude-3-opus',
-      image: '/vercel.svg',
-      date: '2025-06-18',
-      source: 'Anthropic News'
-    }
-  ];
+export default function News() {
+  const featuredArticles = newsArticles.filter(article => article.featured);
+  const regularArticles = newsArticles.filter(article => !article.featured);
 
   return (
-    <div className="min-h-screen py-8 px-6 bg-black">
+    <div className="min-h-screen lg:ml-0 py-12 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
-          ref={headerRef}
-          className="text-center mb-12"
-        >
-          <BlurText as="h1" text="KI-News" className="text-4xl md:text-5xl font-bold mb-4" />
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Aktuelle Entwicklungen und Trends aus der Welt der Künstlichen Intelligenz
-          </p>
-        </motion.div>
+        <FadeContent>
+          <div className="text-center mb-12">
+            <div className="w-16 h-16 gradient-blue rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Newspaper size={32} className="text-white" />
+            </div>
+            <BlurText as="h1" text="KI-News & Updates" className="text-4xl md:text-5xl font-bold text-white mb-4" />
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Bleibe auf dem Laufenden mit den neuesten Entwicklungen in der KI-Welt. 
+              Von Model-Updates bis zu Industry-News.
+            </p>
+          </div>
+        </FadeContent>
 
-        {/* Live Update Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
-          ref={liveUpdateRef}
-          className="flex justify-center mb-8"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleLiveUpdate}
-            disabled={isUpdating}
-            className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
-              isUpdating 
-                ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
-                : 'gradient-blue text-white hover-glow'
-            }`}
-          >
-            {isUpdating ? (
-              <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                <span>Aktualisiere...</span>
-              </div>
-            ) : (
-              <div className="flex items-center space-x-2">
-                <span>🔄</span>
-                <span>Live Update</span>
-              </div>
-            )}
-          </motion.button>
-        </motion.div>
-
-        {/* Apple-Style Filter-Tabs für News-Kategorien */}
-        <div className="flex flex-wrap gap-3 justify-center mb-8">
-          {['Alle', 'Marktanalyse', 'Modell-Updates', 'Forschung', 'Governance', 'Business-Trends'].map(cat => (
-            <button
-              key={cat}
-              className={`glass-button px-5 py-2 rounded-xl font-semibold text-base transition-all duration-200 button-bounce ${selectedCategory === cat ? 'bg-white/10 text-blue-400 ring-2 ring-blue-400/30 scale-105' : 'text-gray-200'}`}
-              onClick={() => setSelectedCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Live News Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
-          className="mb-16"
-        >
-          <BlurText as="h2" text="Live KI-News" className="text-2xl font-bold mb-6 text-center text-white" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {liveNews.map((news, index) => (
-              <motion.a
-                key={news.id}
-                href={news.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 40, scale: 0.98 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
-                className="relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10"
-                whileHover={{ scale: 1.025 }}
+        {/* Stats */}
+        <FadeContent delay={0.2}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            {[
+              { label: "Artikel", value: newsArticles.length.toString(), icon: Newspaper },
+              { label: "Kategorien", value: (categories.length - 1).toString(), icon: TrendingUp },
+              { label: "Featured", value: featuredArticles.length.toString(), icon: Sparkles },
+              { label: "Diese Woche", value: "6", icon: Zap }
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+                className="glass-panel p-4 rounded-xl text-center"
               >
-                <div className="p-7 flex flex-col gap-3">
-                  <BlurText as="h3" text={news.title} className="text-xl font-bold text-white mb-1 leading-tight font-sans" />
-                  <p className="text-gray-200 text-base mb-2 min-h-[48px] font-sans">{news.summary}</p>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-white/70">{news.date}</span>
-                  </div>
-                </div>
-                {/* Apple-Style Glow Effekt */}
-                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{boxShadow:'0 0 60px 0 #fff, 0 0 120px 0 #f5f5f5'}} />
-              </motion.a>
+                <stat.icon size={20} className="text-blue-400 mx-auto mb-2" />
+                <div className="text-xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-xs text-gray-400">{stat.label}</div>
+              </motion.div>
             ))}
           </div>
-        </motion.section>
+        </FadeContent>
 
-        {/* Featured News */}
-        {filteredNews.filter(news => news.featured).length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
-            className="mb-12"
-          >
-            <BlurText as="h2" text="Featured News" className="text-2xl font-bold mb-6 text-center" />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {filteredNews.filter(news => news.featured).map((news, index) => (
-                <motion.div
-                  key={news.id}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
-                  className={`card p-8 ${news.gradient} hover-lift`}
+        {/* Categories */}
+        <FadeContent delay={0.4}>
+          <div className="card p-6 mb-8">
+            <h2 className="text-xl font-bold text-white mb-4">Kategorien</h2>
+            <div className="flex flex-wrap gap-3">
+              {categories.map((category, index) => (
+                <motion.button
+                  key={category.name}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 + index * 0.05 }}
+                  className="glass-button px-4 py-2 rounded-lg hover:bg-white/10 transition-all duration-200"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-semibold bg-white/20 text-white px-3 py-1 rounded-full">
-                      {news.category}
-                    </span>
-                    <span className="text-sm text-white/80">{news.readTime}</span>
-                  </div>
-                  <BlurText as="h3" text={news.title} className="text-xl font-bold text-white mb-3" />
-                  <p className="text-white/90 mb-4">{news.summary}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-white/70">{news.date}</span>
-                    <div className="flex space-x-2">
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => handleCopy(news.title, news.id)}
-                        className="text-white/80 hover:text-white text-sm"
-                      >
-                        {copiedId === news.id ? '✓ Kopiert' : '📋 Kopieren'}
-                      </motion.button>
-                      <Link href={`/news/${news.id}`}>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="text-white/80 hover:text-white text-sm"
-                        >
-                          📖 Lesen
-                        </motion.button>
-                      </Link>
+                  <span className={`font-medium ${category.color}`}>{category.name}</span>
+                  <span className="text-gray-400 text-sm ml-2">({category.count})</span>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+        </FadeContent>
+
+        {/* Featured Articles */}
+        {featuredArticles.length > 0 && (
+          <FadeContent delay={0.5}>
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <Sparkles size={24} className="mr-2 text-yellow-400" />
+                Featured Stories
+              </h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {featuredArticles.map((article, index) => (
+                  <motion.div
+                    key={article.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 + index * 0.1 }}
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="card p-6 group cursor-pointer relative overflow-hidden"
+                  >
+                    <div className="absolute top-4 right-4 bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full text-xs font-medium flex items-center">
+                      <Sparkles size={12} className="mr-1" />
+                      Featured
                     </div>
+
+                    <div className="flex items-start space-x-4 mb-4">
+                      <div className="w-16 h-16 glass-button rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Bot size={24} className="text-blue-400" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">
+                            {article.category}
+                          </span>
+                          <span className="text-xs text-gray-400 flex items-center">
+                            <Calendar size={12} className="mr-1" />
+                            {new Date(article.date).toLocaleDateString('de-DE')}
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors line-clamp-2">
+                          {article.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-300 text-sm mb-4 leading-relaxed line-clamp-3">
+                      {article.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-wrap gap-1">
+                        {article.tags.slice(0, 2).map(tag => (
+                          <span key={tag} className="text-xs bg-gray-700/50 text-gray-300 px-2 py-1 rounded">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center text-xs text-gray-400">
+                        <Clock size={12} className="mr-1" />
+                        {article.readTime}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center text-blue-400 mt-4 group-hover:text-blue-300 transition-colors">
+                      <span className="text-sm font-medium">Weiterlesen</span>
+                      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </FadeContent>
+        )}
+
+        {/* Regular Articles */}
+        <FadeContent delay={0.7}>
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-white mb-6">Alle Artikel</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {regularArticles.map((article, index) => (
+                <motion.div
+                  key={article.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className="card p-6 group cursor-pointer"
+                >
+                  <div className="flex items-center space-x-2 mb-4">
+                    <span className={`text-xs px-2 py-1 rounded-full ${
+                      article.category === 'Modelle' ? 'bg-purple-500/20 text-purple-300' :
+                      article.category === 'Tools' ? 'bg-orange-500/20 text-orange-300' :
+                      article.category === 'Updates' ? 'bg-green-500/20 text-green-300' :
+                      article.category === 'Best Practices' ? 'bg-pink-500/20 text-pink-300' :
+                      'bg-cyan-500/20 text-cyan-300'
+                    }`}>
+                      {article.category}
+                    </span>
+                    <span className="text-xs text-gray-400 flex items-center">
+                      <Calendar size={12} className="mr-1" />
+                      {new Date(article.date).toLocaleDateString('de-DE')}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-white mb-3 group-hover:text-blue-300 transition-colors line-clamp-2">
+                    {article.title}
+                  </h3>
+
+                  <p className="text-gray-300 text-sm mb-4 leading-relaxed line-clamp-3">
+                    {article.excerpt}
+                  </p>
+
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex flex-wrap gap-1">
+                      {article.tags.slice(0, 2).map(tag => (
+                        <span key={tag} className="text-xs bg-gray-700/50 text-gray-300 px-2 py-1 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center text-xs text-gray-400">
+                      <Clock size={12} className="mr-1" />
+                      {article.readTime}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center text-blue-400 group-hover:text-blue-300 transition-colors">
+                    <span className="text-sm font-medium">Artikel lesen</span>
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </motion.div>
               ))}
             </div>
-          </motion.section>
-        )}
-
-        {/* All News */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
-          ref={newsCardsRef}
-        >
-          <BlurText as="h2" text="Aktuelle KI-News" className="text-2xl font-bold mb-6 text-center text-white" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <AnimatePresence>
-              {filteredNews.map((news, index) => (
-                <motion.div
-                  key={news.id}
-                  initial={{ opacity: 0, y: 40, scale: 0.98 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 1.3, ease: [0.4,0,0.2,1], type: 'tween', bounce: 0 }}
-                  className="relative group glass-panel animated-gradient shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-white/10"
-                  whileHover={{ scale: 1.025 }}
-                >
-                  <div className="p-7 flex flex-col gap-3">
-                    <BlurText as="h3" text={news.title} className="text-xl font-bold text-white mb-1 leading-tight font-sans" />
-                    <p className="text-gray-200 mb-2 font-sans">{news.summary}</p>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-semibold bg-white/20 text-white px-3 py-1 rounded-full">{news.category}</span>
-                      <span className="text-sm text-white/80">{news.readTime}</span>
-                    </div>
-                    <span className="text-xs text-gray-400">{news.date}</span>
-                  </div>
-                  <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{boxShadow:'0 0 60px 0 #fff, 0 0 120px 0 #f5f5f5'}} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
           </div>
-        </motion.section>
+        </FadeContent>
+
+        {/* Newsletter CTA */}
+        <FadeContent delay={0.9}>
+          <div className="card p-8 text-center">
+            <h2 className="text-2xl font-bold text-white mb-4">Verpasse keine KI-News</h2>
+            <p className="text-gray-300 mb-6">
+              Abonniere unseren Newsletter und erhalte die wichtigsten KI-Updates direkt in dein Postfach.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Deine E-Mail-Adresse"
+                className="flex-1 px-4 py-3 glass-button rounded-lg text-white bg-transparent border-none outline-none focus:ring-2 focus:ring-blue-500/50"
+              />
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-3 gradient-blue text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200"
+              >
+                Abonnieren
+              </motion.button>
+            </div>
+            <p className="text-xs text-gray-400 mt-4">
+              Jederzeit abbestellbar. Wir spammen nicht.
+            </p>
+          </div>
+        </FadeContent>
       </div>
     </div>
   );

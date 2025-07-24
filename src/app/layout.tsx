@@ -1,64 +1,58 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "../components/Navigation";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import CookieConsent from "../components/CookieConsent";
+import MeshGradientBackground from "../components/MeshGradientBackground";
 
 export const metadata: Metadata = {
-  title: "AI Stack - KI-Landscape 2024-2025",
-  description: "Umfassende Übersicht der KI-Landschaft 2024-2025 mit Executive Summary, aktuellen Trends, KI-Modellen, Tools und Best Practices.",
-  icons: {
-    icon: '/favicon.svg',
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-      { url: '/apple-touch-icon-precomposed.png', sizes: '180x180', type: 'image/png' },
-    ],
+  title: "AI Stack - Deine KI-Tool Plattform",
+  description: "Entdecke die neuesten KI-Modelle, Tools und Best Practices für dein Business. AI Stack bietet dir eine kuratierte Sammlung der besten KI-Ressourcen.",
+  keywords: ["KI", "AI", "Tools", "Machine Learning", "Prompts", "Best Practices"],
+  authors: [{ name: "Felix Ehrenhuber" }],
+  openGraph: {
+    title: "AI Stack - Deine KI-Tool Plattform",
+    description: "Entdecke die neuesten KI-Modelle, Tools und Best Practices",
+    type: "website",
+    locale: "de_DE",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   viewport: {
-    width: 'device-width',
+    width: "device-width",
     initialScale: 1,
     maximumScale: 1,
-    userScalable: false,
   },
-  themeColor: '#000000',
-  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="de">
+    <html lang="de" className="scroll-smooth">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" 
+          rel="stylesheet" 
+        />
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="AI Stack" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="mash-radiance-bg">
-          <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 30% 40%, #5856D6 0%, #000 80%)', width: '600px', height: '600px', top: '10%', left: '5%', animationDelay: '0s'}} />
-          <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 70% 60%, #FF2D55 0%, #000 80%)', width: '500px', height: '500px', top: '40%', left: '60%', animationDelay: '10s'}} />
-          <div className="mash-radiance-blob" style={{background: 'radial-gradient(circle at 50% 80%, #34C759 0%, #000 80%)', width: '400px', height: '400px', top: '70%', left: '30%', animationDelay: '20s'}} />
+      <body className="font-sans antialiased">
+        <MeshGradientBackground />
+        <div className="relative z-10">
+          <Navigation />
+          <main className="pt-20">
+            {children}
+          </main>
         </div>
-        <Navigation />
-        <main className="pt-20">
-          {children}
-        </main>
+        <CookieConsent />
       </body>
     </html>
   );
