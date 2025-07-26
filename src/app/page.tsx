@@ -183,7 +183,7 @@ export default function Home() {
       {/* Hero Section (Finvolv Style) */}
       <section
         ref={heroRef}
-        className="relative py-28 px-6 bg-gradient-to-br from-blue-900/60 to-black/90"
+        className="relative py-28 px-6"
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -193,27 +193,26 @@ export default function Home() {
             className="mb-10"
           >
             <Logo size="xl" showText={true} className="mx-auto mb-6" />
-            <BlurText as="h1" text="Revolutionize the Way You Manage Money" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
+            <BlurText as="h1" text="Welcome to AI Stack" className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" />
             <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Secure. Smart. Seamless. Manage, invest, and grow your money with
-              confidence.
+              Your enterprise platform for AI prompts with Apple-inspired design.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
-                href="#demo"
+                href="/prompts"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-lg gradient-blue text-white font-semibold hover-glow shadow-lg text-lg"
+                className="px-8 py-3 rounded-lg text-white font-semibold hover-glow shadow-lg text-lg rotating-border"
               >
-                Watch Demo
+                <span className="block bg-black rounded-md px-4 py-2">Explore Prompts</span>
               </motion.a>
               <motion.a
                 href="#features"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/5 transition-colors text-lg"
+                className="px-8 py-3 rounded-lg text-white font-semibold hover:bg-white/5 transition-colors text-lg rotating-border"
               >
-                Learn More
+                <span className="block bg-black rounded-md px-4 py-2">Learn More</span>
               </motion.a>
             </div>
           </motion.div>

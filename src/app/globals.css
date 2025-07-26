@@ -117,20 +117,20 @@ html {
 .mash-radiance-bg {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
   overflow: hidden;
 }
 .mash-radiance-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.5;
-  animation: mashMove 40s ease-in-out infinite alternate;
+  filter: blur(100px);
+  opacity: 0.7;
+  animation: mashMove 20s ease-in-out infinite alternate;
 }
 @keyframes mashMove {
   0% { transform: translateY(0) scale(1); opacity: 0.5; }
-  50% { transform: translateY(-40px) scale(1.1); opacity: 0.7; }
+  50% { transform: translateY(-80px) scale(1.2); opacity: 0.7; }
   100% { transform: translateY(0) scale(1); opacity: 0.5; }
 }
 
@@ -317,6 +317,49 @@ html {
 
 .hover-glow:hover {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Rotating Gradient Border */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.rotating-border {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.rotating-border::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0%,
+    #6E45E2,
+    #FF52E5,
+    #48B0FF,
+    #0CEBEB,
+    #6E45E2,
+    transparent 100%
+  );
+  animation: rotate 6s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotate {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
 }
 
 /* Text Gradients */
